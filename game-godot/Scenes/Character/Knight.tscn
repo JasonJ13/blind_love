@@ -210,7 +210,6 @@ _data = {
 }
 
 [node name="Knight" type="CharacterBody2D"]
-collision_mask = 5
 script = ExtResource("1_sv1xq")
 
 [node name="center" type="CollisionShape2D" parent="."]
