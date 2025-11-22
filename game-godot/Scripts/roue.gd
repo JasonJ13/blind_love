@@ -16,3 +16,5 @@ func active() -> void :
 
 func desactive() -> void :
 	actived = false
+	sprite.stop()
+	sprite.frame = 0

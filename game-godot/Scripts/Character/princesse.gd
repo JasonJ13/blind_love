@@ -14,10 +14,13 @@ var new_direction = 'down'
 var is_following : bool = true
 var is_close : bool = true
 
-var roue_act : Roue = null
+var lever_present : Roue = null
+
+@export var light : bool = true
 
 func _ready() -> void :
-	pass
+	if light :
+		$PointLight2D.show()
 
 func set_knight(kn : CharacterBody2D) :
 	knight = kn
@@ -71,14 +74,24 @@ func _physics_process(delta: float) -> void:
 	
 	### Activate roue
 	
-	if roue_act && Input.is_action_just_pressed("ui_select") :
-		roue_act.active()
-		print("TOURNE CONNARD")
+	if lever_present :
+		if Input.is_action_just_pressed("ui_select") :
+			lever_present.active()
+			SPEED = 0
+		elif Input.is_action_just_released("ui_select") :
+			if lever_present is Roue :
+				lever_present.desactive()
+			SPEED = 200
+	
 	
 	
 	### Mouvement Knight
-	if Input.is_action_just_pressed("ui_accept") && is_close:
+	if Input.is_action_just_pressed("Order 1") && is_close:
 		is_following = !is_following
+	
+	if Input.is_action_just_pressed("Order 2") && is_following && lever_present :
+		knight.go_to_lever(lever_present)
+		is_following = false
 	
 	is_close = position.distance_to(knight.position) < area_pull_radius +.01
 	
@@ -89,4 +102,9 @@ func _physics_process(delta: float) -> void:
 
 func lever_reach(body: Node2D) -> void:
 	if body is Roue :
-		roue_act = body
+		lever_present = body
+
+
+func lever_leave(body: Node2D) -> void:
+	if body == lever_present :
+		lever_present = null
