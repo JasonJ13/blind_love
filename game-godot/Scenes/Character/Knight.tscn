@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=3 uid="uid://dp846te0n2pvb"]
+[gd_scene load_steps=27 format=3 uid="uid://dp846te0n2pvb"]
 
 [ext_resource type="Script" uid="uid://vr76kxqlwg8b" path="res://Scripts/Character/knight.gd" id="1_sv1xq"]
+[ext_resource type="Texture2D" uid="uid://b772cxvbs50ev" path="res://Assets/sword_swoosh.png" id="2_mmvx3"]
 [ext_resource type="Texture2D" uid="uid://cwnd2v45faxct" path="res://Assets/KnightSheet.png" id="3_x8ec4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sv1xq"]
@@ -148,6 +149,66 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="Animation" id="Animation_3kkwa"]
+resource_name = "sword_swing"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(160, 0), Vector2(0, 160), Vector2(-160, 0), Vector2(0, -160), Vector2(160, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5707964, 3.1415927, 4.712389, 6.2831855]
+}
+
+[sub_resource type="Animation" id="Animation_q8kcn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sword:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(160, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_63yiy"]
+_data = {
+&"RESET": SubResource("Animation_q8kcn"),
+&"sword_swing": SubResource("Animation_3kkwa")
+}
+
 [node name="Knight" type="CharacterBody2D"]
 script = ExtResource("1_sv1xq")
 
@@ -168,6 +229,14 @@ offset_bottom = -125.0
 text = "!"
 label_settings = SubResource("LabelSettings_sv1xq")
 
+[node name="Sword" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(160, 0)
+scale = Vector2(6, 6)
+texture = ExtResource("2_mmvx3")
+hframes = 2
+frame = 1
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
@@ -177,6 +246,12 @@ animation = &"down"
 [node name="Moving" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_63yiy")
+}
+speed_scale = 4.0
 
 [connection signal="body_entered" from="Area2D" to="." method="hear_something"]
 [connection signal="body_exited" from="Area2D" to="." method="Deaf_bruh"]
