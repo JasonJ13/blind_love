@@ -1,53 +1,49 @@
-[gd_scene load_steps=8 format=3 uid="uid://cecsad8vtfs5d"]
+[gd_scene load_steps=8 format=3 uid="uid://ch8f50j75l4dw"]
 
 [ext_resource type="Script" uid="uid://b3u5jqiamekrj" path="res://Scripts/Interface/pause_menu.gd" id="1_r5mpx"]
 [ext_resource type="FontFile" uid="uid://d14hss2wymye0" path="res://Assets/alagard.ttf" id="2_mgngg"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nx782"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5mpx"]
 bg_color = Color(0.09803922, 0.09803922, 0.09803922, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7vrkn"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mgngg"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06t4h"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfxsg"]
 bg_color = Color(0.9057694, 0.90576947, 0.90576935, 0.7254902)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fu7sn"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f557n"]
 bg_color = Color(0.599199, 0.599199, 0.5991988, 0.7254902)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_06t4h"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uy8oq"]
 
-[node name="MainMenu" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
+[node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_r5mpx")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
 [node name="Panel" type="Panel" parent="."]
-layout_mode = 1
+modulate = Color(0, 0, 0, 0.84313726)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_nx782")
+
+[node name="Panel2" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_r5mpx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -72,10 +68,10 @@ theme_override_constants/outline_size = 15
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("2_mgngg")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxEmpty_7vrkn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_06t4h")
-theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_06t4h")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mgngg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dfxsg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f557n")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uy8oq")
 text = "Resume Game"
 
 [node name="Button2" type="Button" parent="VBoxContainer"]
@@ -88,14 +84,13 @@ theme_override_constants/outline_size = 15
 theme_override_constants/line_spacing = 0
 theme_override_fonts/font = ExtResource("2_mgngg")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxEmpty_7vrkn")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_06t4h")
-theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_06t4h")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mgngg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_dfxsg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_f557n")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uy8oq")
 text = "Back To Main Menu"
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -118,8 +113,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_resume_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_mainmenuback_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_quit_pressed"]
