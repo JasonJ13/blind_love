@@ -26,7 +26,6 @@ knight = NodePath("../Knight")
 [node name="Knight" parent="." node_paths=PackedStringArray("princesse") instance=ExtResource("2_kbbsd")]
 position = Vector2(52, 335)
 princesse = NodePath("../Princesse")
-radius_center = null
 
 [node name="Tour" parent="." instance=ExtResource("4_kbbsd")]
 position = Vector2(589, 364)
