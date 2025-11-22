@@ -12,9 +12,11 @@ func is_actived() -> bool :
 func active() -> void :
 	actived = true
 	sprite.play()
+	$AudioStreamPlayer2D.play()
 	is_actived_signal.emit()
 
 func desactive() -> void :
 	actived = false
+	$AudioStreamPlayer2D.stop()
 	sprite.stop()
 	sprite.frame = 0
