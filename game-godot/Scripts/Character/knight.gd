@@ -17,6 +17,10 @@ var new_direction : String = "down"
 @export var princesse : CharacterBody2D
 var radius_princesse : int
 
+
+@export var SPEED : float = 200
+
+
 func set_princesse(pr : CharacterBody2D, radius : int) -> void :
 	princesse = pr
 	radius_princesse = radius
@@ -33,18 +37,18 @@ func follow() -> void :
 	timer_moving.start()
 
 
-func mouvement_detection(distance_princesse : Vector2) -> void :
+func mouvement_detection(distance_objective : Vector2) -> void :
 		
 	
-	if abs(distance_princesse.x) > abs(distance_princesse.y) :
-		if distance_princesse.x > 0 :
+	if abs(distance_objective.x) > abs(distance_objective.y) :
+		if distance_objective.x > 0 :
 			new_direction = "right"
 			
 		else :
 			new_direction = "left"
 			
 	else :
-		if distance_princesse.y > 0 :
+		if distance_objective.y > 0 :
 			new_direction = "down"
 		else :
 			new_direction = "up"
@@ -58,11 +62,6 @@ func mouvement_detection(distance_princesse : Vector2) -> void :
 func _ready() -> void:
 	center.shape.radius = radius_center
 	set_princesse(princesse,princesse.get_radius())
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-@warning_ignore("unused_parameter")
-func _process(delta: float) -> void:
-	pass
 
 
 func remove_one_trap() -> void :
@@ -106,3 +105,37 @@ func stop() -> void:
 	sprite.stop()
 	sprite.frame = 0
 	is_moving = false
+
+
+
+
+var lever : Roue
+var not_reach : bool = true
+
+func go_to_lever(l : Roue) :
+	lever = l
+	print("target acquire")
+
+func drop_lever() :
+	if lever : 
+		lever.desactive()
+		lever = null
+		not_reach = true
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
+func _process(delta: float) -> void:
+	
+	if lever && not_reach:
+		var direction = lever.position - position
+		velocity = direction.normalized() * SPEED
+		
+		move_and_slide()
+
+
+func lever_reach(body: Node2D) -> void:
+	
+	if lever && body == lever :
+		print("lever reach")
+		not_reach = false
+		lever.active()

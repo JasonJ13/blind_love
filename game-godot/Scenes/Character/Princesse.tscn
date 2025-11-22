@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://ctvwc8ks84tv3"]
+[gd_scene load_steps=25 format=3 uid="uid://ctvwc8ks84tv3"]
 
 [ext_resource type="Script" uid="uid://don0026c0tl5b" path="res://Scripts/Character/princesse.gd" id="1_l7cwq"]
 [ext_resource type="Texture2D" uid="uid://buxtxm5h2rs3e" path="res://Assets/PrincessSheet.png" id="3_1jmrq"]
+[ext_resource type="AudioStream" uid="uid://bs5bkef5f3elt" path="res://Assets/sons/HandHold.wav" id="3_kpivn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7cwq"]
 size = Vector2(88, 84)
@@ -12,6 +13,8 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_c84bh"]
 gradient = SubResource("Gradient_l7cwq")
+width = 192
+height = 192
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -165,6 +168,7 @@ shape = SubResource("RectangleShape2D_l7cwq")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 visible = false
 scale = Vector2(3.90625, 3.59375)
+energy = 1.4
 texture = SubResource("GradientTexture2D_c84bh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -182,4 +186,8 @@ collision_mask = 5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_iwqjw")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_kpivn")
+
 [connection signal="body_entered" from="Area2D" to="." method="lever_reach"]
+[connection signal="body_exited" from="Area2D" to="." method="lever_leave"]
