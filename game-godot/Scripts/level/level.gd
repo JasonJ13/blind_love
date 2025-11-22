@@ -13,11 +13,14 @@ func init_roue() -> void :
 
 
 func remove_grill() -> void :
-	grill.queue_free()
+	if grill :
+		grill.queue_free()
 
 func is_actioned() -> void :
 	for roue in roue_grill :
 		if !roue.is_actived() :
 			return
 	
+	for roue in roue_grill :
+		roue.all_active()
 	remove_grill()
