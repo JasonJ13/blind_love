@@ -100,7 +100,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2445m"]
-radius = 120.203995
+radius = 256.4995
 
 [node name="Tour" type="StaticBody2D"]
 script = ExtResource("1_dd7vw")
@@ -119,6 +119,10 @@ autoplay = "sleep"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zone_detection"]
 shape = SubResource("CircleShape2D_2445m")
 debug_color = Color(0.5809074, 0.023080777, 0.02231568, 0.41960785)
+
+[node name="Lumière" type="RayCast2D" parent="."]
+
+[node name="Rayon laser" type="RayCast2D" parent="."]
 
 [connection signal="body_entered" from="Zone_detection" to="." method="_on_zone_detection_body_entered"]
 [connection signal="body_exited" from="Zone_detection" to="." method="_on_zone_detection_body_exited"]

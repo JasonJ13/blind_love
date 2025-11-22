@@ -39,7 +39,7 @@ func hear_something(body: Node2D) -> void:
 		label.show()
 		nmb_hear += 1
 		
-		body.desactivation.connect("Deaf_bruh",body)
+		#body.desactivation.connect("Deaf_bruh",body)
 
 
 func Deaf_bruh(body: Node2D) -> void:

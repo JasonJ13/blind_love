@@ -5,8 +5,7 @@ signal desactivation
 
 signal contact
 
-var active = true
-
+var active:bool
 
 func is_actived() -> bool :
 	return active

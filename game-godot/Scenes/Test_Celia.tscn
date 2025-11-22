@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwlhkcxlqlcur"]
+[gd_scene load_steps=5 format=3 uid="uid://bwlhkcxlqlcur"]
 
 [ext_resource type="PackedScene" uid="uid://bl6vp6hrj0vri" path="res://Scenes/Pics.tscn" id="1_hnt72"]
 [ext_resource type="PackedScene" path="res://Scenes/Knight.tscn" id="2_kbbsd"]
 [ext_resource type="PackedScene" path="res://Scenes/Princesse.tscn" id="3_cu2ko"]
+[ext_resource type="PackedScene" uid="uid://cubwx1ohu5orf" path="res://Scenes/Tour.tscn" id="4_kbbsd"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -25,3 +26,6 @@ knight = NodePath("../Knight")
 [node name="Knight" parent="." node_paths=PackedStringArray("princesse") instance=ExtResource("2_kbbsd")]
 position = Vector2(52, 335)
 princesse = NodePath("../Princesse")
+
+[node name="Tour" parent="." instance=ExtResource("4_kbbsd")]
+position = Vector2(589, 364)
