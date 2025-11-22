@@ -88,6 +88,11 @@ func _physics_process(delta: float) -> void:
 	### Mouvement Knight
 	if Input.is_action_just_pressed("Order 1") && is_close:
 		is_following = !is_following
+		if is_following:
+			$AudioStreamPlayer2D.stream = load("res://Assets/sons/HandHold.wav")
+		else:
+			$AudioStreamPlayer2D.stream = load("res://Assets/sons/HandLet.wav")
+		$AudioStreamPlayer2D.play()
 	
 	if Input.is_action_just_pressed("Order 2") && is_following && lever_present :
 		knight.go_to_lever(lever_present)
