@@ -1,4 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d3kyu1vks8acm"]
+[gd_scene load_steps=4 format=3 uid="uid://d3kyu1vks8acm"]
+
+[ext_resource type="Script" uid="uid://qryd25h7bnll" path="res://Scripts/Interface/dialogue_box.gd" id="1_hygrc"]
+[ext_resource type="FontFile" uid="uid://d14hss2wymye0" path="res://Assets/alagard.ttf" id="2_l8qb8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vo4xn"]
 bg_color = Color(0, 0, 0, 0.4627451)
@@ -15,6 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hygrc")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -45,12 +49,12 @@ theme_override_constants/margin_bottom = 40
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/MarginContainer/HBoxContainer"]
+[node name="Label" type="RichTextLabel" parent="MarginContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 0
-text = "Bla bla bla
-"
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_l8qb8")
+theme_override_font_sizes/normal_font_size = 24
+fit_content = true
 
 [node name="Panel" type="Panel" parent="MarginContainer/MarginContainer"]
 visible = false
