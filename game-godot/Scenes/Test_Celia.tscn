@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://bwlhkcxlqlcur"]
 
 [ext_resource type="PackedScene" uid="uid://bl6vp6hrj0vri" path="res://Scenes/Pics.tscn" id="1_hnt72"]
-[ext_resource type="PackedScene" path="res://Scenes/Knight.tscn" id="2_kbbsd"]
-[ext_resource type="PackedScene" path="res://Scenes/Princesse.tscn" id="3_cu2ko"]
+[ext_resource type="PackedScene" uid="uid://dp846te0n2pvb" path="res://Scenes/Knight.tscn" id="2_kbbsd"]
+[ext_resource type="PackedScene" uid="uid://ctvwc8ks84tv3" path="res://Scenes/Princesse.tscn" id="3_cu2ko"]
 [ext_resource type="PackedScene" uid="uid://cubwx1ohu5orf" path="res://Scenes/Tour.tscn" id="4_kbbsd"]
 
 [node name="Node2D" type="Node2D"]
