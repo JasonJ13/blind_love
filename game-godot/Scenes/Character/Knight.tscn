@@ -255,5 +255,6 @@ libraries = {
 speed_scale = 4.0
 
 [connection signal="body_entered" from="Area2D" to="." method="hear_something"]
+[connection signal="body_entered" from="Area2D" to="." method="lever_reach"]
 [connection signal="body_exited" from="Area2D" to="." method="Deaf_bruh"]
 [connection signal="timeout" from="Moving" to="." method="stop"]

@@ -18,6 +18,7 @@ var lever_present : Roue = null
 
 @export var light : bool = true
 
+
 func _ready() -> void :
 	if light :
 		$PointLight2D.show()
@@ -47,6 +48,12 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.normalized() * SPEED
 	move_and_slide()
 	
+	if position.y > knight.position.y :
+		z_index = 1
+		knight.z_index = 0
+	else :
+		z_index = 0
+		knight.z_index = 1
 	
 	### Princess Sprite
 	
@@ -86,17 +93,21 @@ func _physics_process(delta: float) -> void:
 	
 	
 	### Mouvement Knight
-	if Input.is_action_just_pressed("Order 1") && is_close:
-		is_following = !is_following
-		if is_following:
-			$AudioStreamPlayer2D.stream = load("res://Assets/sons/HandHold.wav")
-		else:
-			$AudioStreamPlayer2D.stream = load("res://Assets/sons/HandLet.wav")
-		$AudioStreamPlayer2D.play()
-	
-	if Input.is_action_just_pressed("Order 2") && is_following && lever_present :
-		knight.go_to_lever(lever_present)
-		is_following = false
+	var O1 = Input.is_action_just_pressed("Order 1")
+	var O2 = Input.is_action_just_pressed("Order 2")
+	if (O1 || O2) && is_close:
+		
+		if !is_following :
+			is_following = true
+			knight.drop_lever()
+		
+		else :
+			if O1 :
+				is_following = false
+			
+			elif O2 && lever_present :
+				knight.go_to_lever(lever_present)
+				is_following = false
 	
 	is_close = position.distance_to(knight.position) < area_pull_radius +.01
 	
