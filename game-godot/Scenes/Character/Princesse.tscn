@@ -167,5 +167,6 @@ texture = SubResource("GradientTexture2D_c84bh")
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_qin34")
 animation = &"down"
+autoplay = "down"
 
 [node name="Camera2D" type="Camera2D" parent="."]

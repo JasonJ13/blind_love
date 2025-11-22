@@ -12,36 +12,31 @@ var direction:Vector2
 enum STATE{charge,attaque,rest}
 
 var current_state:STATE
-
+var played_charge=false
 
 func _physics_process(delta: float) -> void:
+	print()
+	match current_state:
+		STATE.charge:
+			if !charge_audio.is_playing() and !played_charge:
+				charge_audio.play()
+				played_charge=true
+			line_2d.default_color=Color.WHITE
+		STATE.attaque:
+			line_2d.default_color=Color.DARK_RED
+			if !attaque_audio.is_playing():
+				attaque_audio.play()
+		STATE.rest:
+			charge_audio.stop()
+			played_charge=false
 	if direction:
-		match current_state:
-			STATE.charge:
-				if !charge_audio.is_playing():
-					charge_audio.play()
-				line_2d.default_color=Color.WHITE
-			STATE.attaque:
-				line_2d.default_color=Color.DARK_RED
-				if !attaque_audio.is_playing():
-					attaque_audio.play()
-			STATE.rest:
-				charge_audio.stop()
-
 		target_position=(target_position.normalized()-direction)
 		target_position.x=move_toward(target_position.x,
 		max_length,
 		cast_speed*delta)
+		
 	line_2d.points[1]=target_position
-
-	
-@export var is_casting := false: set = set_is_casting
-
-func set_is_casting(new_value:bool):
-	if is_casting==new_value:
-		return
-	is_casting=new_value
-	set_physics_process(is_casting)
-	
-	if is_casting==false:
+	if !is_casting:
 		target_position.x=0
+	
+@export var is_casting := false
