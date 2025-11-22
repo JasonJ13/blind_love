@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwlhkcxlqlcur"]
 
-[ext_resource type="PackedScene" uid="uid://bl6vp6hrj0vri" path="res://Scenes/pics.tscn" id="1_hnt72"]
+[ext_resource type="PackedScene" uid="uid://bl6vp6hrj0vri" path="res://Scenes/Pics.tscn" id="1_hnt72"]
 [ext_resource type="PackedScene" path="res://Scenes/Knight.tscn" id="2_kbbsd"]
 [ext_resource type="PackedScene" path="res://Scenes/Princesse.tscn" id="3_cu2ko"]
 
