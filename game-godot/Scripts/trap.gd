@@ -3,8 +3,6 @@ class_name Trap extends StaticBody2D
 signal activation
 signal desactivation
 
-signal contact
-
 var active:bool
 
 func is_actived() -> bool :

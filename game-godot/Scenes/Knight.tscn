@@ -162,9 +162,9 @@ shape = SubResource("CircleShape2D_x8ec4")
 [node name="Label" type="Label" parent="."]
 visible = false
 offset_left = -8.0
-offset_top = -109.0
+offset_top = -213.0
 offset_right = 19.0
-offset_bottom = -21.0
+offset_bottom = -125.0
 text = "!"
 label_settings = SubResource("LabelSettings_sv1xq")
 

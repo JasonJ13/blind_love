@@ -64,14 +64,12 @@ func _process(delta: float) -> void:
 
 
 func remove_one_trap() -> void :
-	print("remove ", nmb_hear)
 	nmb_hear -= 1
 		
 	if nmb_hear == 0 :
 		label.hide()
 
 func add_one_trap() -> void :
-	print("add ", nmb_hear)
 	if nmb_hear == 0 :
 		label.show()
 	
