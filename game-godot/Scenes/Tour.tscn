@@ -103,6 +103,8 @@ animations = [{
 radius = 256.4995
 
 [node name="Tour" type="StaticBody2D"]
+collision_layer = 6
+collision_mask = 5
 script = ExtResource("1_dd7vw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

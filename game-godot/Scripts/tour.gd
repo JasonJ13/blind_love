@@ -2,6 +2,7 @@ class_name Tour extends Trap
 
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var lumiere: RayCast2D = $Lumière
 
 var cibles: Array[CharacterBody2D]
 var current_cible:CharacterBody2D
@@ -14,12 +15,13 @@ var timer:Timer = Timer.new()
 
 func _ready() -> void:
 	active=false
-	timer.stop()
+	add_child(timer)
 	timer.timeout.connect(self.change_state.bind(STATE.ATTACK))
 
 func _process(_delta:float):
 	match current_state:
 		STATE.SLEEP:
+			lumiere.hide()
 			if len(cibles)>0:
 				for c in cibles:
 					sight_check(c)
@@ -28,6 +30,7 @@ func _process(_delta:float):
 						change_state(STATE.WATCH)
 						pass
 		STATE.WATCH:
+			lumiere.show()
 			sight_check(current_cible)
 			if cible_in_sight:
 				var regard = global_position-current_cible.global_position
@@ -55,6 +58,31 @@ func _process(_delta:float):
 				change_state(STATE.SLEEP)
 		STATE.ATTACK:
 			print("attaque")
+			sight_check(current_cible)
+			if cible_in_sight:
+				var regard = global_position-current_cible.global_position
+				var angle = rad_to_deg(regard.angle())
+				#méthode de galérienne car je sais pas utilser animation player
+				if angle>-15 and angle<40:
+					sprite.play("left90")
+				elif angle<-165 or angle>140:
+					sprite.play("right90")
+				elif angle>0:
+					sprite.play("back")
+				elif angle<-75 and angle>-105:
+					sprite.play("front")
+				elif angle<-15 and angle>-100:
+					sprite.play("left45")
+				else:
+					sprite.play("right45")
+				current_cible=cibles[0]
+			elif len(cibles)>1:
+				current_cible=cibles[1]
+				sight_check(current_cible)
+				if !cible_in_sight:
+					change_state(STATE.SLEEP)
+			else:
+				change_state(STATE.SLEEP)
 	
 
 func sight_check(body:CharacterBody2D):
@@ -62,17 +90,17 @@ func sight_check(body:CharacterBody2D):
 	var space_state=get_world_2d().direct_space_state
 	var sightParameters=PhysicsRayQueryParameters2D.create(global_position,body.global_position,collision_mask,[self])
 	var sight=space_state.intersect_ray(sightParameters)
-	print(sight)
 	if len(sight)>0 and sight["collider"] is CharacterBody2D :
 		cible_in_sight=true
 	else:
-		cible_in_sight=true
+		cible_in_sight=false
 		
 func change_state(state):
 	current_state=state
 	if current_state==STATE.WATCH:
 		timer.start(attack_delay)
-	if current_state!=STATE.WATCH and timer:
+		print("timer start")
+	if current_state!=STATE.WATCH:
 		timer.stop()
 
 func sleep():
@@ -81,7 +109,6 @@ func sleep():
 
 func _on_zone_detection_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
-		print("body_enter")
 		cibles.append(body)
 		current_cible=cibles[0]
 		sight_check(body)
@@ -92,7 +119,6 @@ func _on_zone_detection_body_entered(body: Node2D) -> void:
 
 func _on_zone_detection_body_exited(body: Node2D) -> void:
 	if body is CharacterBody2D:
-		print("body out")
 		cibles.erase(body)
 		if len(cibles)==0:
 			change_state(STATE.SLEEP)
