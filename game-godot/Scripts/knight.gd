@@ -30,13 +30,17 @@ func _ready() -> void:
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	pass
+
+
 func remove_one_trap() -> void :
+	print("remove ", nmb_hear)
 	nmb_hear -= 1
 		
 	if nmb_hear == 0 :
 		label.hide()
 
 func add_one_trap() -> void :
+	print("add ", nmb_hear)
 	if nmb_hear == 0 :
 		label.show()
 	
@@ -47,9 +51,10 @@ func add_one_trap() -> void :
 func hear_something(body: Node2D) -> void:
 	
 	
-	if (body is Trap && body.is_actived()) :
-		label.show()
-		nmb_hear += 1
+	if (body is Trap) :
+		
+		if (body.is_actived()) :
+			add_one_trap()
 		
 		body.desactivation.connect(self.remove_one_trap)
 		body.activation.connect(self.add_one_trap)
@@ -57,7 +62,10 @@ func hear_something(body: Node2D) -> void:
 
 func Deaf_bruh(body: Node2D) -> void:
 	
-	if (body is Trap && body.is_actived()) :
-		remove_one_trap()
+	if (body is Trap) :
+		
+		if body.is_actived() :
+			remove_one_trap()
+			
 		body.desactivation.disconnect(self.remove_one_trap)
 		body.activation.disconnect(self.add_one_trap)

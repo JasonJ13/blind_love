@@ -11,9 +11,14 @@ func is_actived() -> bool :
 	return active
 
 func desactivate() -> void :
+	if is_actived() :
+		desactivation.emit()
+	
 	active = false
-	desactivation.emit()
+	
 
 func activate():
+	if !is_actived() :
+		activation.emit()
+	
 	active=true
-	activation.emit()
