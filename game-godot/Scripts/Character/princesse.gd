@@ -29,8 +29,8 @@ func get_radius() -> int :
 func _physics_process(delta: float) -> void:
 
 	### Princesse Mouvement
-	var directionX := Input.get_axis("ui_left", "ui_right")
-	var directionY := Input.get_axis("ui_up","ui_down")
+	var directionX := Input.get_axis("Left", "Right")
+	var directionY := Input.get_axis("Up","Down")
 	if directionX:
 		velocity.x = directionX
 	else:

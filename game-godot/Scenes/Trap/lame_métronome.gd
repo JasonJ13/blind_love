@@ -1,4 +1,4 @@
-extends Control
+class_name Lame extends Trap
 
 
 # Called when the node enters the scene tree for the first time.
@@ -9,12 +9,3 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
-
-func _on_start_pressed() -> void:
-	var next_scence=preload("res://Scenes/Test/Test_Jason.tscn")
-	get_tree().change_scene_to_packed(next_scence)
-
-
-func _on_quit_pressed() -> void:
-	get_tree().quit()
