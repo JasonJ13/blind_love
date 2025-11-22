@@ -11,13 +11,13 @@
 position = Vector2(187, 134)
 
 [node name="Pics2" parent="." instance=ExtResource("1_hnt72")]
-position = Vector2(297, 228)
+position = Vector2(427, 328)
 
 [node name="Pics3" parent="." instance=ExtResource("1_hnt72")]
-position = Vector2(280, 172)
+position = Vector2(425, 390)
 
 [node name="Pics4" parent="." instance=ExtResource("1_hnt72")]
-position = Vector2(365, 187)
+position = Vector2(426, 358)
 
 [node name="Princesse" parent="." node_paths=PackedStringArray("knight") instance=ExtResource("3_cu2ko")]
 position = Vector2(111, 326)
@@ -28,4 +28,4 @@ position = Vector2(52, 335)
 princesse = NodePath("../Princesse")
 
 [node name="Tour" parent="." instance=ExtResource("4_kbbsd")]
-position = Vector2(589, 364)
+position = Vector2(589, 368)
