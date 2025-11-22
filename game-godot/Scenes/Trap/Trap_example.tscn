@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dtdj7n8tjmhto"]
+
+[ext_resource type="Script" uid="uid://thqnkogwxxb5" path="res://Scripts/Trap/trap_example.gd" id="1_qfn5u"]
+[ext_resource type="Texture2D" uid="uid://dgqv3eb6hvisi" path="res://Assets/icon.svg" id="2_ik7og"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4q07"]
+
+[node name="Trap_example" type="StaticBody2D"]
+script = ExtResource("1_qfn5u")
+metadata/_custom_type_script = "uid://d2x1ppd1tt7oe"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_u4q07")
+
+[node name="Active_Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ik7og")
+
+[connection signal="timeout" from="Active_Timer" to="." method="trap_run_out"]
