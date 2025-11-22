@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://buxtxm5h2rs3e" path="res://Assets/PrincessSheet.png" id="3_1jmrq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7cwq"]
-size = Vector2(129, 84)
+size = Vector2(88, 84)
 
 [sub_resource type="Gradient" id="Gradient_l7cwq"]
 offsets = PackedFloat32Array(0, 0.68666667)
@@ -158,7 +158,7 @@ collision_mask = 5
 script = ExtResource("1_l7cwq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 35)
+position = Vector2(1, 35)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_l7cwq")
 
