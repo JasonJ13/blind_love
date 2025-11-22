@@ -8,7 +8,7 @@ var cibles: Array[CharacterBody2D]
 var current_cible:CharacterBody2D
 
 var cible_in_sight=false
-var attack_delay=3
+var attack_delay=4
 enum STATE{SLEEP,WATCH,ATTACK}
 var current_state=STATE.SLEEP
 var timer:Timer = Timer.new()
@@ -21,7 +21,8 @@ func _ready() -> void:
 func _process(_delta:float):
 	match current_state:
 		STATE.SLEEP:
-			lumiere.hide()
+			lumiere.is_casting=false
+			lumiere.current_state=lumiere.STATE.rest
 			if len(cibles)>0:
 				for c in cibles:
 					sight_check(c)
@@ -30,11 +31,15 @@ func _process(_delta:float):
 						change_state(STATE.WATCH)
 						pass
 		STATE.WATCH:
-			lumiere.show()
+			
 			sight_check(current_cible)
 			if cible_in_sight:
 				var regard = global_position-current_cible.global_position
 				var angle = rad_to_deg(regard.angle())
+				lumiere.direction=regard
+				lumiere.is_casting=true
+				lumiere.current_state=lumiere.STATE.charge
+
 				#méthode de galérienne car je sais pas utilser animation player
 				if angle>-15 and angle<40:
 					sprite.play("left90")
@@ -57,11 +62,13 @@ func _process(_delta:float):
 			else:
 				change_state(STATE.SLEEP)
 		STATE.ATTACK:
-			print("attaque")
 			sight_check(current_cible)
 			if cible_in_sight:
 				var regard = global_position-current_cible.global_position
 				var angle = rad_to_deg(regard.angle())
+				lumiere.direction=regard
+				lumiere.is_casting=true
+				lumiere.current_state=lumiere.STATE.attaque
 				#méthode de galérienne car je sais pas utilser animation player
 				if angle>-15 and angle<40:
 					sprite.play("left90")
@@ -99,13 +106,13 @@ func change_state(state):
 	current_state=state
 	if current_state==STATE.WATCH:
 		timer.start(attack_delay)
-		print("timer start")
 	if current_state!=STATE.WATCH:
 		timer.stop()
 
 func sleep():
 	desactivate()
 	sprite.play("sleep")
+	lumiere.is_casting=false
 
 func _on_zone_detection_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
