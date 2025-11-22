@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bwlhkcxlqlcur"]
+
+[ext_resource type="PackedScene" uid="uid://bl6vp6hrj0vri" path="res://Scenes/Pics.tscn" id="1_hnt72"]
+[ext_resource type="PackedScene" uid="uid://dp846te0n2pvb" path="res://Scenes/Knight.tscn" id="2_kbbsd"]
+[ext_resource type="PackedScene" uid="uid://ctvwc8ks84tv3" path="res://Scenes/Princesse.tscn" id="3_cu2ko"]
+[ext_resource type="PackedScene" uid="uid://cubwx1ohu5orf" path="res://Scenes/Tour.tscn" id="4_kbbsd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbbsd"]
+size = Vector2(111, 249.5)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Pics" parent="." instance=ExtResource("1_hnt72")]
+position = Vector2(187, 134)
+
+[node name="Pics2" parent="." instance=ExtResource("1_hnt72")]
+position = Vector2(427, 328)
+
+[node name="Pics3" parent="." instance=ExtResource("1_hnt72")]
+position = Vector2(425, 390)
+
+[node name="Pics4" parent="." instance=ExtResource("1_hnt72")]
+position = Vector2(426, 358)
+
+[node name="Princesse" parent="." node_paths=PackedStringArray("knight") instance=ExtResource("3_cu2ko")]
+position = Vector2(111, 326)
+knight = NodePath("../Knight")
+
+[node name="Knight" parent="." node_paths=PackedStringArray("princesse") instance=ExtResource("2_kbbsd")]
+position = Vector2(52, 335)
+scale = Vector2(0.13, 0.13)
+princesse = NodePath("../Princesse")
+
+[node name="Tour" parent="." instance=ExtResource("4_kbbsd")]
+position = Vector2(589, 368)
+
+[node name="MUR" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MUR"]
+position = Vector2(496, 389)
+shape = SubResource("RectangleShape2D_kbbsd")
+debug_color = Color(1, 0.567373, 0.69599307, 0.41960785)
