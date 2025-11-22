@@ -154,6 +154,7 @@ animations = [{
 radius = 128.0
 
 [node name="Princesse" type="CharacterBody2D"]
+collision_mask = 5
 script = ExtResource("1_l7cwq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -173,6 +174,7 @@ animation = &"down"
 autoplay = "down"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 5

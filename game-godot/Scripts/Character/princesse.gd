@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+@export var SPEED = 300.0
 
 
 @export var area_pull_radius : int = 128
@@ -71,8 +71,9 @@ func _physics_process(delta: float) -> void:
 	
 	### Activate roue
 	
-	if roue_act && Input.is_action_just_pressed("ui_accept") :
+	if roue_act && Input.is_action_just_pressed("ui_select") :
 		roue_act.active()
+		print("TOURNE CONNARD")
 	
 	
 	### Mouvement Knight

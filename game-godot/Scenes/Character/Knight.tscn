@@ -231,6 +231,7 @@ text = "!"
 label_settings = SubResource("LabelSettings_sv1xq")
 
 [node name="Sword" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(160, 0)
 scale = Vector2(6, 6)
 texture = ExtResource("2_mmvx3")

@@ -13,7 +13,6 @@ func init_roue() -> void :
 
 
 func remove_grill() -> void :
-	return
 	grill.hide()
 
 func is_actioned() -> void :
