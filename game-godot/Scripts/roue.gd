@@ -18,10 +18,11 @@ func active() -> void :
 		is_actived_signal.emit()
 
 func desactive() -> void :
-	actived = false
-	$AudioStreamPlayer2D.stop()
-	sprite.stop()
-	sprite.frame = 0
+	if !resolve :
+		actived = false
+		$AudioStreamPlayer2D.stop()
+		sprite.stop()
+		sprite.frame = 0
 
 func all_active() -> void :
 	resolve = true

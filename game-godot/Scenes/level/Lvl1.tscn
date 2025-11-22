@@ -10,7 +10,6 @@
 
 [node name="Lvl1" type="Node2D" node_paths=PackedStringArray("grill", "roues")]
 script = ExtResource("1_74igr")
-music = false
 grill = NodePath("grill")
 roues = NodePath("Roue")
 metadata/_custom_type_script = "uid://d0nmjx75p4rir"

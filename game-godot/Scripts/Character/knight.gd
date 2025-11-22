@@ -117,8 +117,10 @@ func go_to_lever(l : Roue) :
 	print("target acquire")
 
 func drop_lever() :
-	lever.desactive()
-	lever = null
+	if lever : 
+		lever.desactive()
+		lever = null
+		not_reach = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")

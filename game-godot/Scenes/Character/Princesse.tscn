@@ -1,7 +1,8 @@
-[gd_scene load_steps=24 format=3 uid="uid://ctvwc8ks84tv3"]
+[gd_scene load_steps=25 format=3 uid="uid://ctvwc8ks84tv3"]
 
 [ext_resource type="Script" uid="uid://don0026c0tl5b" path="res://Scripts/Character/princesse.gd" id="1_l7cwq"]
 [ext_resource type="Texture2D" uid="uid://buxtxm5h2rs3e" path="res://Assets/PrincessSheet.png" id="3_1jmrq"]
+[ext_resource type="AudioStream" uid="uid://bs5bkef5f3elt" path="res://Assets/sons/HandHold.wav" id="3_kpivn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7cwq"]
 size = Vector2(88, 84)
@@ -186,6 +187,7 @@ collision_mask = 5
 shape = SubResource("CircleShape2D_iwqjw")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_kpivn")
 
 [connection signal="body_entered" from="Area2D" to="." method="lever_reach"]
 [connection signal="body_exited" from="Area2D" to="." method="lever_leave"]
