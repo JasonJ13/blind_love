@@ -23,6 +23,7 @@ func _process(_delta:float):
 		STATE.SLEEP:
 			lumiere.is_casting=false
 			lumiere.current_state=lumiere.STATE.rest
+			lumiere.hide()
 			if len(cibles)>0:
 				for c in cibles:
 					sight_check(c)
@@ -39,6 +40,7 @@ func _process(_delta:float):
 				lumiere.direction=regard
 				lumiere.is_casting=true
 				lumiere.current_state=lumiere.STATE.charge
+				lumiere.show()
 
 				#méthode de galérienne car je sais pas utilser animation player
 				if angle>-15 and angle<40:
