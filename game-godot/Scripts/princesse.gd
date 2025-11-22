@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") && is_close:
 		is_following = !is_following
 	
-	is_close = position.distance_to(knight.position) < area_pull_radius
+	is_close = position.distance_to(knight.position) < area_pull_radius +.01
 	
 	if knight && is_following && !is_close :
 		knight.follow()

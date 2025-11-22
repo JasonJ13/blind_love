@@ -8,11 +8,21 @@
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_ug73m")
 
-[node name="Princesse" parent="." instance=ExtResource("2_now4v")]
+[node name="Princesse" parent="." node_paths=PackedStringArray("knight") instance=ExtResource("2_now4v")]
+knight = NodePath("../Knight")
 
-[node name="Knight" parent="." instance=ExtResource("3_q5dvw")]
+[node name="Knight" parent="." node_paths=PackedStringArray("princesse") instance=ExtResource("3_q5dvw")]
 position = Vector2(-56, -46)
+scale = Vector2(0.5, 0.5)
+princesse = NodePath("../Princesse")
 radius_center = 16
 
 [node name="Trap_example" parent="." instance=ExtResource("4_now4v")]
 position = Vector2(324, 195)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -1538.0
+offset_top = -885.0
+offset_right = 4673.0
+offset_bottom = 2550.0
+color = Color(0, 0, 0, 0.3254902)
