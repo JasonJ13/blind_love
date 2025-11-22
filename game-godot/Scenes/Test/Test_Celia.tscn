@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwlhkcxlqlcur"]
+
+[ext_resource type="PackedScene" path="res://Scenes/Pics.tscn" id="1_84k80"]
+[ext_resource type="PackedScene" uid="uid://ctvwc8ks84tv3" path="res://Scenes/Character/Princesse.tscn" id="2_5v0hs"]
+[ext_resource type="PackedScene" uid="uid://dp846te0n2pvb" path="res://Scenes/Character/Knight.tscn" id="3_vt4ly"]
+[ext_resource type="PackedScene" uid="uid://cubwx1ohu5orf" path="res://Scenes/Trap/Tour.tscn" id="4_rdw4k"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Pics" parent="." instance=ExtResource("1_84k80")]
+position = Vector2(187, 134)
+
+[node name="Pics2" parent="." instance=ExtResource("1_84k80")]
+position = Vector2(427, 328)
+
+[node name="Pics3" parent="." instance=ExtResource("1_84k80")]
+position = Vector2(425, 390)
+
+[node name="Pics4" parent="." instance=ExtResource("1_84k80")]
+position = Vector2(426, 358)
+
+[node name="Princesse" parent="." node_paths=PackedStringArray("knight") instance=ExtResource("2_5v0hs")]
+position = Vector2(111, 326)
+knight = NodePath("../Knight")
+
+[node name="Knight" parent="." node_paths=PackedStringArray("princesse") instance=ExtResource("3_vt4ly")]
+position = Vector2(52, 335)
+scale = Vector2(0.5, 0.5)
+princesse = NodePath("../Princesse")
+
+[node name="Tour" parent="." instance=ExtResource("4_rdw4k")]
+position = Vector2(589, 368)
