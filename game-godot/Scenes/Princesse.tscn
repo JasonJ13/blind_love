@@ -1,28 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctvwc8ks84tv3"]
+[gd_scene load_steps=4 format=3 uid="uid://ctvwc8ks84tv3"]
 
 [ext_resource type="Script" uid="uid://don0026c0tl5b" path="res://Scripts/princesse.gd" id="1_l7cwq"]
 [ext_resource type="Texture2D" uid="uid://dgqv3eb6hvisi" path="res://Assets/icon.svg" id="2_c84bh"]
-
-[sub_resource type="Gradient" id="Gradient_l7cwq"]
-offsets = PackedFloat32Array(0, 0.6533333, 0.76666665)
-colors = PackedColorArray(1, 1, 1, 1, 0.0782609, 0.0782609, 0.0782609, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_l7cwq"]
-gradient = SubResource("Gradient_l7cwq")
-width = 256
-height = 256
-fill = 1
-fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7cwq"]
 size = Vector2(129, 130)
 
 [node name="Princesse" type="CharacterBody2D"]
 script = ExtResource("1_l7cwq")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(0, -1)
-texture = SubResource("GradientTexture2D_l7cwq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -1)
