@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dp846te0n2pvb" path="res://Scenes/Character/Knight.tscn" id="3_i2rs6"]
 [ext_resource type="PackedScene" uid="uid://dtdj7n8tjmhto" path="res://Scenes/Trap/Trap_example.tscn" id="4_wki4i"]
 [ext_resource type="AudioStream" uid="uid://bhgwr7a18eq0n" path="res://Assets/blindHeartLooping.wav" id="5_iy1t8"]
-[ext_resource type="PackedScene" uid="uid://ch8f50j75l4dw" path="res://Scenes/Interface/pause_menu2.tscn" id="6_rnu5p"]
+[ext_resource type="PackedScene" uid="uid://ch8f50j75l4dw" path="res://Scenes/Interface/pause_menu.tscn" id="6_rnu5p"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_e47bv")
@@ -27,3 +27,4 @@ stream = ExtResource("5_iy1t8")
 autoplay = true
 
 [node name="CanvasLayer" parent="." instance=ExtResource("6_rnu5p")]
+visible = false

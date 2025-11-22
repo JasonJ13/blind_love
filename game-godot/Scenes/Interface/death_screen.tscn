@@ -1,0 +1,130 @@
+[gd_scene load_steps=7 format=3 uid="uid://d1g7c45ty6knv"]
+
+[ext_resource type="Script" uid="uid://e6s67qi78uo" path="res://Scenes/Interface/death_screen.gd" id="1_pkiuj"]
+[ext_resource type="FontFile" uid="uid://d14hss2wymye0" path="res://Assets/alagard.ttf" id="2_7fqkm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wf7gf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mws2f"]
+bg_color = Color(0.9057694, 0.90576947, 0.90576935, 0.7254902)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjbjg"]
+bg_color = Color(0.599199, 0.599199, 0.5991988, 0.7254902)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tf4ly"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_pkiuj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 130
+theme_override_constants/margin_top = 135
+theme_override_constants/margin_right = 145
+theme_override_constants/margin_bottom = 125
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -296.5
+offset_top = -53.0
+offset_right = 236.22144
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.113152, 1.8242304)
+theme_override_constants/separation = 10
+
+[node name="Button" type="Button" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 15
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_7fqkm")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wf7gf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mws2f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pjbjg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tf4ly")
+text = "Retry Level"
+
+[node name="Button2" type="Button" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 15
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_7fqkm")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wf7gf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mws2f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pjbjg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tf4ly")
+text = "Back To Main Menu"
+
+[node name="Button3" type="Button" parent="MarginContainer/Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 15
+theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("2_7fqkm")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wf7gf")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mws2f")
+theme_override_styles/hover = SubResource("StyleBoxFlat_pjbjg")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tf4ly")
+text = "Quit Game"
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -241.0
+offset_top = -174.0
+offset_right = 234.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 3
+theme_override_constants/shadow_offset_x = 15
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("2_7fqkm")
+theme_override_font_sizes/font_size = 75
+text = "YOU DIED </3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/Panel/VBoxContainer/Button" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="MarginContainer/Panel/VBoxContainer/Button2" to="." method="_on_backmainmenu_pressed"]
+[connection signal="pressed" from="MarginContainer/Panel/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="MarginContainer/Panel/VBoxContainer/Button3" to="." method="_on_quit_pressed"]
