@@ -18,3 +18,5 @@ func active() -> void :
 func desactive() -> void :
 	actived = false
 	$AudioStreamPlayer2D.stop()
+	sprite.stop()
+	sprite.frame = 0
