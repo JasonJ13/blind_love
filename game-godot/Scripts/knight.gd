@@ -32,19 +32,6 @@ func _process(delta: float) -> void:
 	pass
 
 
-func remove_one_trap() -> void :
-	nmb_hear -= 1
-		
-	if nmb_hear == 0 :
-		label.hide()
-
-func add_one_trap() -> void :
-	if nmb_hear == 0 :
-		label.show()
-	
-	nmb_hear += 1
-	
-
 func hear_something(body: Node2D) -> void:
 	
 	
@@ -52,13 +39,13 @@ func hear_something(body: Node2D) -> void:
 		label.show()
 		nmb_hear += 1
 		
-		body.desactivation.connect(self.remove_one_trap)
-		body.activation.connect(self.add_one_trap)
+		body.desactivation.connect("Deaf_bruh",body)
 
 
 func Deaf_bruh(body: Node2D) -> void:
 	
 	if (body is Trap && body.is_actived()) :
-		remove_one_trap()
-		body.desactivation.disconnect(self.remove_one_trap)
-		body.activation.disconnect(self.add_one_trap)
+		nmb_hear -= 1
+		
+		if nmb_hear == 0 :
+			label.hide()
