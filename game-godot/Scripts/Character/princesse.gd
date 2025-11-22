@@ -47,6 +47,12 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.normalized() * SPEED
 	move_and_slide()
 	
+	if position.y > knight.position.y :
+		z_index = 1
+		knight.z_index = 0
+	else :
+		z_index = 0
+		knight.z_index = 1
 	
 	### Princess Sprite
 	

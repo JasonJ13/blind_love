@@ -17,6 +17,10 @@ var new_direction : String = "down"
 @export var princesse : CharacterBody2D
 var radius_princesse : int
 
+
+@export var SPEED : float = 200
+
+
 func set_princesse(pr : CharacterBody2D, radius : int) -> void :
 	princesse = pr
 	radius_princesse = radius
@@ -106,17 +110,30 @@ func stop() -> void:
 
 
 var lever : Roue
+var not_reach : bool = true
 
 func go_to_lever(l : Roue) :
 	lever = l
 	print("target acquire")
 
 func drop_lever() :
+	lever.desactive()
 	lever = null
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	
-	if lever :
-		pass
+	if lever && not_reach:
+		var direction = lever.position - position
+		velocity = direction.normalized() * SPEED
+		
+		move_and_slide()
+
+
+func lever_reach(body: Node2D) -> void:
+	
+	if lever && body == lever :
+		print("lever reach")
+		not_reach = false
+		lever.active()
