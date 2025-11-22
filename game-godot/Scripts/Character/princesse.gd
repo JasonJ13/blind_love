@@ -14,6 +14,8 @@ var new_direction = 'down'
 var is_following : bool = true
 var is_close : bool = true
 
+var roue_act : Roue = null
+
 func _ready() -> void :
 	pass
 
@@ -67,6 +69,12 @@ func _physics_process(delta: float) -> void:
 			old_direction = new_direction
 	
 	
+	### Activate roue
+	
+	if roue_act && Input.is_action_just_pressed("ui_accept") :
+		roue_act.active()
+	
+	
 	### Mouvement Knight
 	if Input.is_action_just_pressed("ui_accept") && is_close:
 		is_following = !is_following
@@ -76,3 +84,8 @@ func _physics_process(delta: float) -> void:
 	if knight && is_following && !is_close :
 		knight.follow()
 		is_close = true
+
+
+func lever_reach(body: Node2D) -> void:
+	if body is Roue :
+		roue_act = body

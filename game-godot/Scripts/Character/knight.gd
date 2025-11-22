@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
-@export var princesse : CharacterBody2D
-var radius_princesse : int
+
 
 @export var radius_center : int = 12
 @onready var center : CollisionShape2D = $center
@@ -14,6 +13,9 @@ var is_moving : bool = false
 var old_direction : String = "down"
 var new_direction : String = "down"
 @onready var timer_moving : Timer = $Moving
+
+@export var princesse : CharacterBody2D
+var radius_princesse : int
 
 func set_princesse(pr : CharacterBody2D, radius : int) -> void :
 	princesse = pr

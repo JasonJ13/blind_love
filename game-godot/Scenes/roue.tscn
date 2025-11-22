@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdq6q2syb1bh1"]
+
+[ext_resource type="Script" uid="uid://biotap1x25juw" path="res://Scripts/roue.gd" id="1_vb1pb"]
+[ext_resource type="Texture2D" path="res://Assets/wheel.png" id="1_widt7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vb1pb"]
+atlas = ExtResource("1_widt7")
+region = Rect2(0, 0, 31, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp3rb"]
+atlas = ExtResource("1_widt7")
+region = Rect2(32, 0, 31, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fcg5o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vb1pb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp3rb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnie0"]
+size = Vector2(30, 15)
+
+[node name="Roue" type="StaticBody2D"]
+script = ExtResource("1_vb1pb")
+metadata/_custom_type_script = "uid://biotap1x25juw"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_fcg5o")
+frame = 1
+frame_progress = 0.0026916994
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 26)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_rnie0")
