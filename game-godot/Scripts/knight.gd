@@ -38,8 +38,7 @@ func hear_something(body: Node2D) -> void:
 	if (body is Trap && body.is_actived()) :
 		label.show()
 		nmb_hear += 1
-		
-		body.desactivation.connect("Deaf_bruh",body)
+		body.desactivation.connect(self.Deaf_bruh(body))
 
 
 func Deaf_bruh(body: Node2D) -> void:

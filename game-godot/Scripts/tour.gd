@@ -15,7 +15,6 @@ func _process(_delta:float):
 	if active:
 		var regard = global_position-current_cible.global_position
 		var angle = rad_to_deg(regard.angle())
-		print(angle)
 		#méthode de galérienne car je sais pas utilser animation player
 		if angle>-15 and angle<40:
 			sprite.play("left90")
