@@ -6,7 +6,7 @@ const SPEED = 300.0
 
 @export var area_pull_radius : int = 128
 
-var knight : CharacterBody2D
+@export var knight : CharacterBody2D
 var is_following : bool = true
 var is_close : bool = true
 

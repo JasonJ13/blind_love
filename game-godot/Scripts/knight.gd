@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var princesse : CharacterBody2D
+@export var princesse : CharacterBody2D
 var radius_princesse : int
 
 @export var radius_center : int = 12
