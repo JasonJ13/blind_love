@@ -24,7 +24,7 @@ func follow() -> void :
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	center.shape.radius = radius_center
-
+	set_princesse(princesse,princesse.get_radius())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
@@ -39,7 +39,7 @@ func hear_something(body: Node2D) -> void:
 		label.show()
 		nmb_hear += 1
 		
-		#body.desactivation.connect("Deaf_bruh",body)
+		body.desactivation.connect("Deaf_bruh",body)
 
 
 func Deaf_bruh(body: Node2D) -> void:
