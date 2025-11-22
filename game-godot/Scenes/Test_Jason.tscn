@@ -1,3 +1,13 @@
-[gd_scene format=3 uid="uid://cy8bq3a5ieexo"]
+[gd_scene load_steps=4 format=3 uid="uid://cy8bq3a5ieexo"]
+
+[ext_resource type="Script" uid="uid://duac1x4n0u33r" path="res://Scripts/test_jason.gd" id="1_ug73m"]
+[ext_resource type="PackedScene" uid="uid://ctvwc8ks84tv3" path="res://Scenes/Princesse.tscn" id="2_now4v"]
+[ext_resource type="PackedScene" uid="uid://m2ffcc51xvpq" path="res://Scenes/Knight.tscn" id="3_q5dvw"]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_ug73m")
+
+[node name="Princesse" parent="." instance=ExtResource("2_now4v")]
+
+[node name="Knight" parent="." instance=ExtResource("3_q5dvw")]
+position = Vector2(159, 74)
