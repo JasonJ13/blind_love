@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://5urt5nn1xqdy"]
+[gd_scene load_steps=18 format=3 uid="uid://5urt5nn1xqdy"]
 
 [ext_resource type="Script" uid="uid://bxt7r3si0iwbg" path="res://Scripts/Trap/lame_métronome.gd" id="1_glpoj"]
 [ext_resource type="Texture2D" uid="uid://colrxc5mie6ia" path="res://Assets/lameCorps.png" id="2_glpoj"]
+[ext_resource type="Texture2D" uid="uid://cu6xgdl7f4v2d" path="res://Assets/Radar.png" id="3_vjhhs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vjhhs"]
 size = Vector2(29, 17)
@@ -129,6 +130,65 @@ _data = {
 &"swing": SubResource("Animation_glpoj")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_j03a8"]
+atlas = ExtResource("3_vjhhs")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_213el"]
+atlas = ExtResource("3_vjhhs")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuhpf"]
+atlas = ExtResource("3_vjhhs")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dv5vk"]
+atlas = ExtResource("3_vjhhs")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cddj1"]
+atlas = ExtResource("3_vjhhs")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pc8dk"]
+atlas = ExtResource("3_vjhhs")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lf6lg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j03a8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_213el")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kuhpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dv5vk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cddj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pc8dk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_vjhhs"]
+offsets = PackedFloat32Array(0, 0.9880952)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_j03a8"]
+gradient = SubResource("Gradient_vjhhs")
+fill = 1
+fill_from = Vector2(0.5387931, 0.5603448)
+
 [node name="Lame" type="StaticBody2D"]
 collision_layer = 4
 script = ExtResource("1_glpoj")
@@ -153,3 +213,13 @@ libraries = {
 }
 autoplay = "RESET"
 speed_scale = 0.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_lf6lg")
+autoplay = "default"
+frame = 1
+frame_progress = 0.48734325
+
+[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
+texture = SubResource("GradientTexture2D_j03a8")

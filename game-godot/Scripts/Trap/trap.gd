@@ -18,6 +18,8 @@ func desactivate() -> void :
 func activate():
 	if !is_actived() :
 		activation.emit()
-		print("pic up")
 	
 	active=true
+
+func play_radar(act:bool):
+	push_error("play_radar() doit être override dans la classe enfant")

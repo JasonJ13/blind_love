@@ -15,7 +15,7 @@ var new_direction : String = "down"
 
 @export var princesse : CharacterBody2D
 var radius_princesse : int
-
+var traps:Array[Trap]=[]
 
 @export var SPEED : float = 200
 
@@ -68,16 +68,17 @@ func stop_anim():
 	sprite.frame=0
 	sprite.stop()
 
-func remove_one_trap() -> void :
+func remove_one_trap(body:Trap) -> void :
 	nmb_hear -= 1
 		
-	if nmb_hear == 0 :
-		label.hide()
-
-func add_one_trap() -> void :
-	if nmb_hear == 0 :
-		label.show()
 	
+	body.play_radar(false)
+	traps.erase(body)
+
+func add_one_trap(body:Trap) -> void :
+	body.play_radar(true)
+	traps.append(body)
+		
 	nmb_hear += 1
 	
 
@@ -88,10 +89,11 @@ func hear_something(body: Node2D) -> void:
 	if (body is Trap) :
 		
 		if (body.is_actived()) :
-			add_one_trap()
+			body.play_radar(true)
+			add_one_trap(body)
 		
-		body.desactivation.connect(self.remove_one_trap)
-		body.activation.connect(self.add_one_trap)
+		body.desactivation.connect(self.remove_one_trap.bind(body))
+		body.activation.connect(self.add_one_trap.bind(body))
 
 
 func Deaf_bruh(body: Node2D) -> void:
@@ -99,10 +101,11 @@ func Deaf_bruh(body: Node2D) -> void:
 	if (body is Trap) :
 		
 		if body.is_actived() :
-			remove_one_trap()
+
+			remove_one_trap(body)
 			
-		body.desactivation.disconnect(self.remove_one_trap)
-		body.activation.disconnect(self.add_one_trap)
+		body.desactivation.disconnect(self.remove_one_trap.bind(body))
+		body.activation.disconnect(self.add_one_trap.bind(body))
 
 
 func stop() -> void:

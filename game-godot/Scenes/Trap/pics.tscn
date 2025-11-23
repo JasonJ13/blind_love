@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bl6vp6hrj0vri"]
+[gd_scene load_steps=20 format=3 uid="uid://bl6vp6hrj0vri"]
 
 [ext_resource type="Script" uid="uid://vyjxm4wo6sje" path="res://Scripts/Trap/pics.gd" id="1_ynrgr"]
 [ext_resource type="Texture2D" uid="uid://iink6ipkf1eq" path="res://Assets/picsOff.png" id="2_ccjv6"]
 [ext_resource type="Texture2D" uid="uid://dynfv08bukk8n" path="res://Assets/picsOn.png" id="3_ba4n2"]
 [ext_resource type="AudioStream" uid="uid://c2xnxy0gms44w" path="res://Assets/sons/PicHit.wav" id="4_mulcf"]
+[ext_resource type="Texture2D" uid="uid://cu6xgdl7f4v2d" path="res://Assets/Radar.png" id="5_8wbri"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iawcn"]
 atlas = ExtResource("2_ccjv6")
@@ -38,6 +39,65 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ynrgr"]
 size = Vector2(28, 28)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_j03a8"]
+atlas = ExtResource("5_8wbri")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_213el"]
+atlas = ExtResource("5_8wbri")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuhpf"]
+atlas = ExtResource("5_8wbri")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dv5vk"]
+atlas = ExtResource("5_8wbri")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cddj1"]
+atlas = ExtResource("5_8wbri")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pc8dk"]
+atlas = ExtResource("5_8wbri")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5uans"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j03a8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_213el")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kuhpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dv5vk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cddj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pc8dk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_8wbri"]
+offsets = PackedFloat32Array(0, 0.9880952)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5uans"]
+gradient = SubResource("Gradient_8wbri")
+fill = 1
+fill_from = Vector2(0.5387931, 0.5603448)
+
 [node name="Pics" type="StaticBody2D"]
 collision_layer = 2
 collision_mask = 0
@@ -60,5 +120,14 @@ shape = SubResource("RectangleShape2D_12dir")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zone_detection"]
 shape = SubResource("RectangleShape2D_ynrgr")
 debug_color = Color(0.78927106, 0.2682656, 0.19306618, 0.41960785)
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_5uans")
+autoplay = "default"
+frame_progress = 0.9240423
+
+[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D2"]
+texture = SubResource("GradientTexture2D_5uans")
 
 [connection signal="body_entered" from="Zone_detection" to="." method="_on_zone_detection_body_entered"]

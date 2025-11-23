@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bwlhkcxlqlcur"]
+[gd_scene load_steps=7 format=3 uid="uid://bwlhkcxlqlcur"]
 
 [ext_resource type="PackedScene" uid="uid://ctvwc8ks84tv3" path="res://Scenes/Character/Princesse.tscn" id="3_devwa"]
 [ext_resource type="PackedScene" uid="uid://dp846te0n2pvb" path="res://Scenes/Character/Knight.tscn" id="3_vt4ly"]
 [ext_resource type="PackedScene" uid="uid://5urt5nn1xqdy" path="res://Scenes/Trap/lame_métronome.tscn" id="4_84k80"]
 [ext_resource type="PackedScene" uid="uid://cubwx1ohu5orf" path="res://Scenes/Trap/Tour.tscn" id="4_rdw4k"]
-[ext_resource type="PackedScene" uid="uid://qj2pka8r8tdq" path="res://Scenes/Interface/pause_menu.tscn" id="5_5v0hs"]
+[ext_resource type="PackedScene" uid="uid://ch8f50j75l4dw" path="res://Scenes/Interface/pause_menu.tscn" id="5_5v0hs"]
+[ext_resource type="PackedScene" uid="uid://bl6vp6hrj0vri" path="res://Scenes/Trap/pics.tscn" id="6_vt4ly"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -26,7 +27,9 @@ position = Vector2(107, 522)
 
 [node name="MainMenu" parent="." instance=ExtResource("5_5v0hs")]
 visible = false
-offset_left = 829.0
-offset_top = 1417.0
-offset_right = 829.0
-offset_bottom = 1417.0
+
+[node name="Pics" parent="." instance=ExtResource("6_vt4ly")]
+position = Vector2(289, 467)
+
+[node name="Pics2" parent="." instance=ExtResource("6_vt4ly")]
+position = Vector2(238, 464)

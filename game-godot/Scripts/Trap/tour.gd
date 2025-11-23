@@ -5,6 +5,7 @@ class_name Tour extends Trap
 @onready var lumiere: RayCast2D = $Lumière
 @export var scale_detection:int
 @onready var zone_detection: Area2D = $Zone_detection
+@onready var animated_sprite_2d_2: AnimatedSprite2D = $AnimatedSprite2D2
 
 signal touched
 
@@ -144,3 +145,9 @@ func _on_zone_detection_body_exited(body: Node2D) -> void:
 
 func _on_lumière_body_touched() -> void:
 	emit_signal("touched")
+
+func play_radar(act):
+	if active:
+		animated_sprite_2d_2.show()
+	else :
+		animated_sprite_2d_2.hide()

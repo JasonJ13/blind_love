@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cubwx1ohu5orf"]
+[gd_scene load_steps=32 format=3 uid="uid://cubwx1ohu5orf"]
 
 [ext_resource type="Texture2D" uid="uid://bfgkperm3wwr1" path="res://Assets/Tour+oeil/TourBack.png" id="1_2445m"]
 [ext_resource type="Script" uid="uid://much4b7hvq1q" path="res://Scripts/Trap/tour.gd" id="1_dd7vw"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://vqyg3usgj0gv" path="res://Assets/Tour+oeil/TourOeilR45.png" id="5_qqeo2"]
 [ext_resource type="Texture2D" uid="uid://cb6v148g4xhui" path="res://Assets/Tour+oeil/TourOeilR90.png" id="6_3m88o"]
 [ext_resource type="Texture2D" uid="uid://coe0ifyh2y18e" path="res://Assets/Tour+oeil/TourDodo.png" id="7_6clyl"]
+[ext_resource type="Texture2D" uid="uid://cu6xgdl7f4v2d" path="res://Assets/Radar.png" id="12_rdbg1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iu30x"]
 size = Vector2(28, 57)
@@ -105,6 +106,65 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_2445m"]
 radius = 256.4995
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_j03a8"]
+atlas = ExtResource("12_rdbg1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_213el"]
+atlas = ExtResource("12_rdbg1")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kuhpf"]
+atlas = ExtResource("12_rdbg1")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dv5vk"]
+atlas = ExtResource("12_rdbg1")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cddj1"]
+atlas = ExtResource("12_rdbg1")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pc8dk"]
+atlas = ExtResource("12_rdbg1")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wbuqw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j03a8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_213el")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kuhpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dv5vk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cddj1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pc8dk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_8wbri"]
+offsets = PackedFloat32Array(0, 0.9880952)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rdbg1"]
+gradient = SubResource("Gradient_8wbri")
+fill = 1
+fill_from = Vector2(0.5387931, 0.5603448)
+
 [node name="Tour" type="StaticBody2D"]
 collision_layer = 6
 collision_mask = 5
@@ -136,6 +196,7 @@ animation = &"right90"
 autoplay = "sleep"
 
 [node name="Zone_detection" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zone_detection"]
 shape = SubResource("CircleShape2D_2445m")
@@ -145,6 +206,16 @@ debug_color = Color(0.5809074, 0.023080777, 0.02231568, 0.41960785)
 visible = false
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_wbuqw")
+autoplay = "default"
+frame = 5
+frame_progress = 0.15826492
+
+[node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D2"]
+texture = SubResource("GradientTexture2D_rdbg1")
 
 [connection signal="body_touched" from="Lumière" to="." method="_on_lumière_body_touched"]
 [connection signal="body_entered" from="Zone_detection" to="." method="_on_zone_detection_body_entered"]
