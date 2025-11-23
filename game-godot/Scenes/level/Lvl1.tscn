@@ -101,6 +101,7 @@ grow_vertical = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_3rs2y")
+volume_db = 3.215
 
 [node name="princess_spawn" type="Node2D" parent="."]
 position = Vector2(407, 444)
