@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbxc2gfd5mc56"]
+
+[ext_resource type="Script" uid="uid://qryd25h7bnll" path="res://Scripts/Interface/dialogue_box.gd" id="1_my7ks"]
+[ext_resource type="FontFile" uid="uid://d14hss2wymye0" path="res://Assets/alagard.ttf" id="2_hk0u4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pymh2"]
+bg_color = Color(0, 0, 0, 0.4627451)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+
+[node name="dialogue_box" type="CanvasLayer"]
+script = ExtResource("1_my7ks")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -317.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Panel" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pymh2")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="MarginContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/normal_font = ExtResource("2_hk0u4")
+theme_override_font_sizes/normal_font_size = 24
+fit_content = true
+
+[node name="Panel" type="Panel" parent="MarginContainer/MarginContainer"]
+visible = false
+layout_mode = 2

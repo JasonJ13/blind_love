@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 
 
-@export var radius_center : int = 12
 @onready var center : CollisionShape2D = $center
 
 @onready var label = $Label
@@ -16,6 +15,10 @@ var new_direction : String = "down"
 
 @export var princesse : CharacterBody2D
 var radius_princesse : int
+
+
+@export var SPEED : float = 200
+
 
 func set_princesse(pr : CharacterBody2D, radius : int) -> void :
 	princesse = pr
@@ -33,18 +36,18 @@ func follow() -> void :
 	timer_moving.start()
 
 
-func mouvement_detection(distance_princesse : Vector2) -> void :
+func mouvement_detection(distance_objective : Vector2) -> void :
 		
 	
-	if abs(distance_princesse.x) > abs(distance_princesse.y) :
-		if distance_princesse.x > 0 :
+	if abs(distance_objective.x) > abs(distance_objective.y) :
+		if distance_objective.x > 0 :
 			new_direction = "right"
 			
 		else :
 			new_direction = "left"
 			
 	else :
-		if distance_princesse.y > 0 :
+		if distance_objective.y > 0 :
 			new_direction = "down"
 		else :
 			new_direction = "up"
@@ -56,13 +59,7 @@ func mouvement_detection(distance_princesse : Vector2) -> void :
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	center.shape.radius = radius_center
 	set_princesse(princesse,princesse.get_radius())
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-@warning_ignore("unused_parameter")
-func _process(delta: float) -> void:
-	pass
 
 
 func remove_one_trap() -> void :
@@ -106,3 +103,68 @@ func stop() -> void:
 	sprite.stop()
 	sprite.frame = 0
 	is_moving = false
+
+
+
+
+var lever : Lever
+var not_reach : bool = true
+
+func go_to_lever(l : Lever) :
+	lever = l
+
+func drop_lever() :
+	if lever : 
+		lever.desactive()
+		lever = null
+		not_reach = true
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+@warning_ignore("unused_parameter")
+func _process(delta: float) -> void:
+	
+	if lever && not_reach:
+		var direction = lever.position - position
+		velocity = direction.normalized() * SPEED
+		
+		move_and_slide()
+		princesse.move_rope(position.distance_to(princesse.position),get_angle_to(princesse.position))
+		
+		if position.distance_to(lever.position) < 64 :
+			lever_reach(lever)
+
+
+func lever_reach(body: Node2D) -> void:
+	
+	if lever && body == lever :
+		not_reach = false
+		lever.active()
+	
+
+
+
+###MORT
+
+signal dead
+
+func die() -> void :
+	dead.emit()
+	print("knight dead")
+
+
+func trap_leave(body: Node2D) -> void:
+	if body is Trap :
+		body.activation.disconnect(die)
+
+
+func hitbox_enter(body: Node2D) -> void:
+	if body is Trap :
+		print("enter")
+		body.activation.connect(die)
+		if body.is_actived() :
+			die()
+
+
+func hitbox_exit(body: Node2D) -> void:
+	if body is Trap :
+		body.activation.disconnect(die)
