@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bfgkperm3wwr1" path="res://Assets/Tour+oeil/TourBack.png" id="1_2445m"]
 [ext_resource type="Script" uid="uid://much4b7hvq1q" path="res://Scripts/Trap/tour.gd" id="1_dd7vw"]
 [ext_resource type="Texture2D" uid="uid://bfd1xc46ai83o" path="res://Assets/Tour+oeil/TourOeilFront.png" id="2_dd7vw"]
-[ext_resource type="Script" uid="uid://bfrsqxlpxt7g6" path="res://Scripts/lumière.gd" id="2_esq5d"]
+[ext_resource type="Script" path="res://Scripts/lumière.gd" id="2_esq5d"]
 [ext_resource type="Texture2D" uid="uid://tppwc3xo0uv1" path="res://Assets/Tour+oeil/TourOeilL45.png" id="3_esq5d"]
 [ext_resource type="AudioStream" uid="uid://dxq5v70l0e6in" path="res://Assets/sons/tourCharge.wav" id="3_qvv6y"]
 [ext_resource type="AudioStream" uid="uid://y8r4fwxtbglr" path="res://Assets/sons/tourShoot.wav" id="4_qqeo2"]
@@ -140,6 +140,11 @@ autoplay = "sleep"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zone_detection"]
 shape = SubResource("CircleShape2D_2445m")
 debug_color = Color(0.5809074, 0.023080777, 0.02231568, 0.41960785)
+
+[node name="Panel" type="Panel" parent="Zone_detection"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="body_entered" from="Zone_detection" to="." method="_on_zone_detection_body_entered"]
 [connection signal="body_exited" from="Zone_detection" to="." method="_on_zone_detection_body_exited"]
