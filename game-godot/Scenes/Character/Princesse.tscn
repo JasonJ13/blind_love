@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://pvp4p2yiej4u" path="res://Scripts/Interface/control_hints.gd" id="6_mieic"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7cwq"]
-size = Vector2(134, 44)
+size = Vector2(104, 44)
 
 [sub_resource type="Gradient" id="Gradient_l7cwq"]
 offsets = PackedFloat32Array(0, 0.68666667)
@@ -168,7 +168,7 @@ collision_mask = 5
 script = ExtResource("1_l7cwq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 45)
+position = Vector2(0, 45)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_l7cwq")
 

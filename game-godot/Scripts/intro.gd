@@ -6,6 +6,7 @@ extends Node2D
 @onready var audio_stream_player: AudioStreamPlayer = $porte
 @onready var musique: AudioStreamPlayer = $musique
 
+
 var flag1=false
 var flag2=false
 var flag3=false
@@ -26,7 +27,7 @@ func _process(_delta: float) -> void:
 			princesse.stop_animation()
 			musique.play() 
 	if !flag2 and flag1:
-		get_tree().create_timer(1).timeout
+		#get_tree().create_timer(1).timeout
 		knight.velocity=princesse.SPEED*Vector2.RIGHT
 		knight.play_animation("right")
 		knight.move_and_slide()
@@ -46,13 +47,13 @@ func _process(_delta: float) -> void:
 		musique.stop()
 		if princesse.global_position.distance_to(knight.global_position)<40:
 			change_scene()
+
 		
+
+signal intro_finished
+var has_emited = false
+
 func change_scene():
-	
-		var tree = get_tree()
-		var cur_scene = tree.get_current_scene()
-		var packed_scene: PackedScene = load("res://Scenes/level/Lvl1.tscn") 
-		var new_scene = packed_scene.instantiate()
-		tree.get_root().add_child(new_scene)
-		tree.set_current_scene(new_scene)
-		tree.get_root().remove_child(cur_scene)
+	if !has_emited :
+		intro_finished.emit()
+		has_emited = true

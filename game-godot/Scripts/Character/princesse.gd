@@ -189,7 +189,6 @@ func die() -> void :
 
 
 func hitbox_enter(body: Node2D) -> void:
-	print("detection")
 	if body is Trap :
 		body.activation.connect(die)
 		if body.is_actived() :
