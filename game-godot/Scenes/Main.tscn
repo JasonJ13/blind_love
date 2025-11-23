@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://brh05tjg0s3op"]
+[gd_scene load_steps=11 format=3 uid="uid://brh05tjg0s3op"]
 
 [ext_resource type="Script" uid="uid://bl2f3opw56fy3" path="res://Scripts/main.gd" id="1_kln2b"]
 [ext_resource type="PackedScene" uid="uid://6psj7rrjbwen" path="res://Scenes/Interface/main_menu.tscn" id="1_r150o"]
 [ext_resource type="AudioStream" uid="uid://bhgwr7a18eq0n" path="res://Assets/blindHeartLooping.wav" id="2_idj7w"]
 [ext_resource type="Texture2D" uid="uid://cxma8rxra2s08" path="res://Assets/hands.png" id="4_rgh2o"]
+[ext_resource type="PackedScene" uid="uid://d05veqbhsy2rw" path="res://Scenes/ending.tscn" id="5_pbw6q"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pbw6q"]
 texture = ExtResource("4_rgh2o")
@@ -99,6 +100,10 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_pbw6q")
 libraries = {
 &"": SubResource("AnimationLibrary_b26wi")
 }
+
+[node name="Ending" parent="." instance=ExtResource("5_pbw6q")]
+visible = false
+layout_mode = 1
 
 [connection signal="start_game" from="MainMenu" to="." method="intro_Start"]
 [connection signal="animation_finished" from="fondu" to="." method="animation_end"]

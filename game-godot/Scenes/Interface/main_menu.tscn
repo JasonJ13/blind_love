@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://6psj7rrjbwen"]
 
 [ext_resource type="Script" uid="uid://birr8fj3natu4" path="res://Scripts/Interface/main_menu.gd" id="1_x7gjw"]
-[ext_resource type="Texture2D" uid="uid://bgunvkwtjqr71" path="res://Scenes/Interface/TitleScreenBackground.png" id="2_x7gjw"]
+[ext_resource type="Texture2D" uid="uid://bgunvkwtjqr71" path="res://Assets/TitleScreenBackground.png" id="2_x7gjw"]
 [ext_resource type="FontFile" uid="uid://d14hss2wymye0" path="res://Assets/alagard.ttf" id="3_ihmx1"]
 [ext_resource type="AudioStream" uid="uid://bhgwr7a18eq0n" path="res://Assets/blindHeartLooping.wav" id="4_lpc36"]
 

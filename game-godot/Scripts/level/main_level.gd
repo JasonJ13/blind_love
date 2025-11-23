@@ -2,11 +2,14 @@ extends Node2D
 
 @onready var princess : CharacterBody2D = $Princesse
 @onready var knight : CharacterBody2D = $Knight
+@onready var death : CanvasLayer = $death
 
 @export var nmb_level : int = 1
 var levels : Array[Resource]
 var current_nmb_level : int = 0
 var current_level : Level = null
+
+signal go_menu
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -33,7 +36,30 @@ func new_level() -> void :
 	
 	current_level.spawn(princess, knight)
 
+func reload_level() -> void :
+	current_level.queue_free()
+	current_level = levels[current_nmb_level].instantiate()
+	
+	current_level.spawn(princess, knight)
+	princess.input_disabled=false
+	death.hide()
+	death.audio_stream_player.stop()
+	
+	add_child(current_level)
+	
+
+func dead() :
+	death.activate()
+
+signal win
+
 func finished_level(body : Node2D) ->void :
 	
 	if body == princess && princess.is_following :
-		print("level_end")
+		current_nmb_level += 1
+		if current_nmb_level == nmb_level :
+			win.emit()
+
+
+func back_to_menu() -> void:
+	go_menu.emit()

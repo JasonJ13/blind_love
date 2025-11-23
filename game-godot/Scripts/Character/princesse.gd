@@ -185,6 +185,7 @@ signal dead
 
 func die() -> void :
 	dead.emit()
+	$Camera2D.process_mode = Node.PROCESS_MODE_DISABLED
 	print("princess dead")
 
 

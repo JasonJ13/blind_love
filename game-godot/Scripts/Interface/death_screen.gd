@@ -5,6 +5,9 @@ extends CanvasLayer
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 var is_active=false
 
+signal retry
+signal go_menu
+
 func activate():
 	if !is_active:
 		stop_all_audio()
@@ -18,17 +21,16 @@ func activate():
 
 func _on_retry_pressed() -> void:
 	is_active=false
-	princesse.input_disabled=false
-	get_tree().reload_current_scene()
+	retry.emit()
 	
-
-
 
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
 func _on_backmainmenu_pressed() -> void:
+
+	go_menu.emit()
 
 	var tree = get_tree()
 	var cur_scene = tree.get_current_scene()
