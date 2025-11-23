@@ -264,5 +264,6 @@ sources/0 = SubResource("TileSetAtlasSource_8cujs")
 tile_set = SubResource("TileSet_tto40")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 scale = Vector2(1, 1.0000001)
 color = Color(0, 0, 0, 1)
