@@ -19,7 +19,7 @@ var is_close : bool = true
 
 @export var range_max_rope : int = 256 
 
-var lever_present : Roue = null
+var lever_present : Lever = null
 
 @export var light : bool = true
 
@@ -106,7 +106,7 @@ func _physics_process(delta: float) -> void:
 			lever_present.active()
 			SPEED = 0
 		elif Input.is_action_just_released("ui_select") :
-			if lever_present is Roue :
+			if lever_present is Lever :
 				lever_present.desactive()
 			SPEED = 200
 
@@ -136,11 +136,7 @@ func _physics_process(delta: float) -> void:
 		knight.follow()
 		is_close = true
 
-	if is_following != null:
-		$ControlHints.connectable = is_close && !is_following
-		$ControlHints.disconnectable = is_close && is_following
-	else:
-		$ControlHints.connectable = false
+
 		
 
 	$ControlHints.interactable = lever_present != null
@@ -148,7 +144,7 @@ func _physics_process(delta: float) -> void:
 
 
 func lever_reach(body: Node2D) -> void:
-	if body is Roue :
+	if body is Lever :
 		lever_present = body
 
 

@@ -109,10 +109,10 @@ func stop() -> void:
 
 
 
-var lever : Roue
+var lever : Lever
 var not_reach : bool = true
 
-func go_to_lever(l : Roue) :
+func go_to_lever(l : Lever) :
 	lever = l
 	print("target acquire")
 
@@ -131,11 +131,14 @@ func _process(delta: float) -> void:
 		velocity = direction.normalized() * SPEED
 		
 		move_and_slide()
+		princesse.move_rope(position.distance_to(princesse.position),get_angle_to(princesse.position))
+		
+		if position.distance_to(lever.position) < 64 :
+			lever_reach(lever)
 
 
 func lever_reach(body: Node2D) -> void:
 	
 	if lever && body == lever :
-		print("lever reach")
 		not_reach = false
 		lever.active()
