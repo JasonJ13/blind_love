@@ -136,11 +136,7 @@ func _physics_process(delta: float) -> void:
 		knight.follow()
 		is_close = true
 
-	if is_following != null:
-		$ControlHints.connectable = is_close && !is_following
-		$ControlHints.disconnectable = is_close && is_following
-	else:
-		$ControlHints.connectable = false
+
 		
 
 	$ControlHints.interactable = lever_present != null
