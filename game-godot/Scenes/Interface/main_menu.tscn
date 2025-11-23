@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://6psj7rrjbwen"]
+[gd_scene load_steps=10 format=3 uid="uid://6psj7rrjbwen"]
 
 [ext_resource type="Script" uid="uid://birr8fj3natu4" path="res://Scripts/Interface/main_menu.gd" id="1_x7gjw"]
 [ext_resource type="Texture2D" uid="uid://bgunvkwtjqr71" path="res://Assets/TitleScreenBackground.png" id="2_x7gjw"]
 [ext_resource type="FontFile" uid="uid://d14hss2wymye0" path="res://Assets/alagard.ttf" id="3_ihmx1"]
-[ext_resource type="AudioStream" uid="uid://dxuxkbdsblnrj" path="res://Assets/sons/MenuSelect.wav" id="4_ihmx1"]
 [ext_resource type="AudioStream" uid="uid://chsltn5gc4yff" path="res://Assets/sons/TitleScreen.mp3" id="4_lpc36"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lpc36"]
@@ -120,14 +119,15 @@ text = "Blind Love"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="StartSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_ihmx1")
-volume_db = -7.67
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_lpc36")
-volume_db = -1.927
 autoplay = true
+
+[node name="Panel2" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
