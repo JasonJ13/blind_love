@@ -175,15 +175,6 @@ rotation = 0.01588062
 [node name="Lame" parent="." instance=ExtResource("4_b724b")]
 position = Vector2(-174, 145)
 
-[node name="Lame2" parent="." instance=ExtResource("4_b724b")]
-position = Vector2(-174, 295)
-
-[node name="Lame3" parent="." instance=ExtResource("4_b724b")]
-position = Vector2(-172, 443)
-
-[node name="Lame4" parent="." instance=ExtResource("4_b724b")]
-position = Vector2(-173, 545)
-
 [node name="Tour2" parent="." instance=ExtResource("3_nudcv")]
 position = Vector2(-500, -399)
 
@@ -209,3 +200,39 @@ texture = ExtResource("5_b724b")
 position = Vector2(-171, 168)
 scale = Vector2(9.3125, 1)
 texture = ExtResource("5_b724b")
+
+[node name="Lame2" parent="." instance=ExtResource("4_b724b")]
+position = Vector2(-174, 145)
+
+[node name="Lame3" parent="." instance=ExtResource("4_b724b")]
+position = Vector2(-174, 295)
+
+[node name="Lame4" parent="." instance=ExtResource("4_b724b")]
+position = Vector2(-172, 443)
+
+[node name="Lame5" parent="." instance=ExtResource("4_b724b")]
+position = Vector2(-173, 545)
+
+[node name="Lame6" parent="." instance=ExtResource("4_b724b")]
+position = Vector2(-88, 145)
+
+[node name="Lame7" parent="." instance=ExtResource("4_b724b")]
+position = Vector2(-258, 145)
+
+[node name="Lame8" parent="." instance=ExtResource("4_b724b")]
+position = Vector2(-88, 296)
+
+[node name="Lame9" parent="." instance=ExtResource("4_b724b")]
+position = Vector2(-258, 296)
+
+[node name="Lame10" parent="." instance=ExtResource("4_b724b")]
+position = Vector2(-88, 443)
+
+[node name="Lame11" parent="." instance=ExtResource("4_b724b")]
+position = Vector2(-258, 443)
+
+[node name="Lame12" parent="." instance=ExtResource("4_b724b")]
+position = Vector2(-88, 545)
+
+[node name="Lame13" parent="." instance=ExtResource("4_b724b")]
+position = Vector2(-258, 545)
