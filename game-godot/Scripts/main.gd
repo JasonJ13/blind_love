@@ -61,6 +61,8 @@ func animation_end(anim_name: StringName) -> void:
 var ending_there = false
 
 func back_to_menu() :
+	mainMenu.already_start = false
+	mainMenu.audio.play()
 	mainMenu.process_mode = Node.PROCESS_MODE_INHERIT
 	mainMenu.start_game.connect(intro_Start)
 	mainMenu.show()

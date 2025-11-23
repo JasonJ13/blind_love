@@ -60,15 +60,15 @@ layout_mode = 2
 
 [node name="knight" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_hg80k")
-volume_db = -12.866
+volume_db = -16.0
 
 [node name="princesse" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_c65s7")
-volume_db = -12.866
+volume_db = -16.0
 
 [node name="space" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_63nfq")
-volume_db = -6.0
+volume_db = -16.0
 
 [node name="Princessdialogue" type="Sprite2D" parent="."]
 position = Vector2(100, 320)

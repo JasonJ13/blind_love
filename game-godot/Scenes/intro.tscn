@@ -41,6 +41,7 @@ dialogue_path = "res://Assets/Dialogues/intro.txt"
 
 [node name="porte" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_rsiac")
+volume_db = -16.0
 
 [node name="musique" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_3bmuq")

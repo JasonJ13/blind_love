@@ -32,13 +32,7 @@ func _on_backmainmenu_pressed() -> void:
 
 	go_menu.emit()
 
-	var tree = get_tree()
-	var cur_scene = tree.get_current_scene()
-	var packed_scene: PackedScene = load("res://Scenes/Interface/main_menu.tscn") 
-	var new_scene = packed_scene.instantiate()
-	tree.get_root().add_child(new_scene)
-	tree.set_current_scene(new_scene)
-	tree.get_root().remove_child(cur_scene)
+
 	
 func stop_all_audio():
 	var root = get_tree().current_scene
