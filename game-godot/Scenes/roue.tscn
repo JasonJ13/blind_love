@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://bdq6q2syb1bh1"]
+
+[ext_resource type="Script" uid="uid://biotap1x25juw" path="res://Scripts/roue.gd" id="1_vb1pb"]
+[ext_resource type="Texture2D" uid="uid://doxp6gne6chxd" path="res://Assets/wheel.png" id="1_widt7"]
+[ext_resource type="AudioStream" uid="uid://ca2ua7gviirac" path="res://Assets/sons/WheelTurn.wav" id="3_fp3rb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vb1pb"]
+atlas = ExtResource("1_widt7")
+region = Rect2(0, 0, 31, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp3rb"]
+atlas = ExtResource("1_widt7")
+region = Rect2(32, 0, 31, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fcg5o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vb1pb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp3rb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnie0"]
+size = Vector2(30, 15)
+
+[node name="Roue" type="StaticBody2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_vb1pb")
+sprite = NodePath("Sprite")
+metadata/_custom_type_script = "uid://biotap1x25juw"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_fcg5o")
+frame_progress = 0.14192997
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 26)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_rnie0")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_fp3rb")
+pitch_scale = 0.81
+attenuation = 3.1383355
