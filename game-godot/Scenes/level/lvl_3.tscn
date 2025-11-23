@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://c4a2ipm8nvptc"]
+[gd_scene load_steps=6 format=4 uid="uid://c4a2ipm8nvptc"]
 
 [ext_resource type="PackedScene" uid="uid://c5it3np1n0kfk" path="res://Scenes/tile_map_layer.tscn" id="1_mtfaw"]
 [ext_resource type="PackedScene" uid="uid://bl6vp6hrj0vri" path="res://Scenes/Trap/pics.tscn" id="2_hd5ur"]
 [ext_resource type="PackedScene" uid="uid://cubwx1ohu5orf" path="res://Scenes/Trap/Tour.tscn" id="3_nudcv"]
 [ext_resource type="PackedScene" uid="uid://5urt5nn1xqdy" path="res://Scenes/Trap/lame_métronome.tscn" id="4_b724b"]
+[ext_resource type="Texture2D" uid="uid://baxso6ap65ya8" path="res://Assets/sillon.png" id="5_b724b"]
 
 [node name="lvl3" type="Node2D"]
 
@@ -188,3 +189,23 @@ position = Vector2(-500, -399)
 
 [node name="Tour3" parent="." instance=ExtResource("3_nudcv")]
 position = Vector2(140, -412)
+
+[node name="Sillon" type="Sprite2D" parent="."]
+position = Vector2(-173.49998, 567)
+scale = Vector2(9.15625, 1)
+texture = ExtResource("5_b724b")
+
+[node name="Sillon2" type="Sprite2D" parent="."]
+position = Vector2(-172, 465)
+scale = Vector2(9.312501, 1)
+texture = ExtResource("5_b724b")
+
+[node name="Sillon3" type="Sprite2D" parent="."]
+position = Vector2(-171, 318)
+scale = Vector2(9.250001, 1)
+texture = ExtResource("5_b724b")
+
+[node name="Sillon4" type="Sprite2D" parent="."]
+position = Vector2(-171, 168)
+scale = Vector2(9.3125, 1)
+texture = ExtResource("5_b724b")
