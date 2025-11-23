@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://d2xf08crbamjt"]
+
+[ext_resource type="Script" uid="uid://douek015hc2cj" path="res://Scripts/lever/lever.gd" id="1_gc8t6"]
+[ext_resource type="Texture2D" uid="uid://cgbaggrynyvrq" path="res://Assets/lever.png" id="1_nvjeb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i10q5"]
+size = Vector2(23, 8)
+
+[sub_resource type="Animation" id="Animation_i10q5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bar/progration:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 6)]
+}
+
+[sub_resource type="Animation" id="Animation_gc8t6"]
+resource_name = "progress"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bar/progration:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 6), Vector2(52, 6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sk8qt"]
+_data = {
+&"RESET": SubResource("Animation_i10q5"),
+&"progress": SubResource("Animation_gc8t6")
+}
+
+[node name="Lever" type="StaticBody2D"]
+script = ExtResource("1_gc8t6")
+metadata/_custom_type_script = "uid://biotap1x25juw"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nvjeb")
+hframes = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 15)
+shape = SubResource("RectangleShape2D_i10q5")
+
+[node name="bar" type="ColorRect" parent="."]
+offset_left = -26.0
+offset_top = -24.0
+offset_right = 26.0
+offset_bottom = -18.0
+color = Color(0.23392546, 0.23392546, 0.23392543, 1)
+
+[node name="progration" type="ColorRect" parent="bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -52.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.22512138, 0.59539014, 0.24648777, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_sk8qt")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="end_active"]
