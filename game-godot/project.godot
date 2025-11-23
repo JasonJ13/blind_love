@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Blind_love"
+run/main_scene="uid://j1dr4dqi7qii"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://Assets/icon.svg"
 

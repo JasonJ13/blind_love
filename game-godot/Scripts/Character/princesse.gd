@@ -7,12 +7,14 @@ extends CharacterBody2D
 @export var area_pull_radius : int = 128
 
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
-var old_direction = 'down'
-var new_direction = 'down'
+var old_direction = null
+var new_direction = null
 
 @export var knight : CharacterBody2D
 var is_following : bool = true
 var is_close : bool = true
+
+@export var range_max_rope : int = 256 
 
 var lever_present : Roue = null
 
@@ -46,14 +48,21 @@ func _physics_process(delta: float) -> void:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 	
 	velocity = velocity.normalized() * SPEED
+	
+	
+	var distance_kn = position.distance_to(knight.position)
+	var angle_kn = knight.position.angle_to_point(position)
+	
+
+	var opposite = directionY * sign(angle_kn) > 0 || (directionX == 1 && abs(angle_kn) < PI/2) || (directionX == -1 && abs(angle_kn) > PI/2)
+
+	@warning_ignore("integer_division")
+	if distance_kn > range_max_rope*3/4 && opposite :
+		velocity = velocity * ((abs(range_max_rope - distance_kn)) / range_max_rope )
+	
 	move_and_slide()
 	
-	if position.y > knight.position.y :
-		z_index = 1
-		knight.z_index = 0
-	else :
-		z_index = 0
-		knight.z_index = 1
+	
 	
 	### Princess Sprite
 	
@@ -62,6 +71,14 @@ func _physics_process(delta: float) -> void:
 		sprite.stop()
 	
 	else :
+		move_rope(distance_kn, angle_kn)
+		
+		if position.y > knight.position.y :
+			z_index = 1
+			knight.z_index = 0
+		else :
+			z_index = 0
+			knight.z_index = 1
 		
 		if abs(velocity.x) > abs(velocity.y) :
 			if velocity.x > 0 :
@@ -124,3 +141,16 @@ func lever_reach(body: Node2D) -> void:
 func lever_leave(body: Node2D) -> void:
 	if body == lever_present :
 		lever_present = null
+
+
+
+
+@onready var rope = $Rope
+
+func move_rope(distance_kn : float, angle_kn : float) -> void :
+	
+	rope.rotation = angle_kn + PI/2
+	rope.size.y = distance_kn *2
+	
+	
+	
