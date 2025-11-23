@@ -13,7 +13,6 @@ size = Vector2(110, 37)
 
 [node name="Lvl1" type="Node2D" node_paths=PackedStringArray("grill", "roues", "spawn_point_princesse", "spawn_point_knight")]
 script = ExtResource("1_74igr")
-music = false
 grill = NodePath("grill")
 roues = NodePath("Roue")
 spawn_point_princesse = NodePath("princess_spawn")
@@ -44,9 +43,10 @@ stream = ExtResource("4_wu1ab")
 
 [node name="Roue" type="Node2D" parent="."]
 
-[node name="Roue1" parent="Roue" instance=ExtResource("4_74igr")]
+[node name="Roue1" parent="Roue" node_paths=PackedStringArray("wires") instance=ExtResource("4_74igr")]
 position = Vector2(948, 216)
 scale = Vector2(0.75, 0.75)
+wires = [NodePath("ColorRect"), NodePath("ColorRect2")]
 
 [node name="ColorRect" type="ColorRect" parent="Roue/Roue1"]
 z_as_relative = false
@@ -71,9 +71,10 @@ offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Roue2" parent="Roue" instance=ExtResource("4_74igr")]
+[node name="Roue2" parent="Roue" node_paths=PackedStringArray("wires") instance=ExtResource("4_74igr")]
 position = Vector2(736, 284)
 scale = Vector2(0.75, 0.75)
+wires = [NodePath("ColorRect"), NodePath("ColorRect2")]
 
 [node name="ColorRect" type="ColorRect" parent="Roue/Roue2"]
 z_as_relative = false
@@ -100,12 +101,13 @@ grow_vertical = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_3rs2y")
+volume_db = 3.215
 
 [node name="princess_spawn" type="Node2D" parent="."]
-position = Vector2(337, 447)
+position = Vector2(407, 444)
 
 [node name="knight_spawn" type="Node2D" parent="."]
-position = Vector2(288, 448)
+position = Vector2(364, 453)
 
 [node name="Area2D" type="Area2D" parent="."]
 

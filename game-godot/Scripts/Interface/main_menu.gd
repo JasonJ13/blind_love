@@ -1,19 +1,21 @@
 extends Control
 
+signal start_game
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
+@onready var audio = $AudioStreamPlayer
+var already_start : bool = false
 
 func _on_start_pressed() -> void:
-	var next_scence=preload("res://Scenes/Test/Test_Jason.tscn")
-	get_tree().change_scene_to_packed(next_scence)
+	if !already_start :
+		already_start = true
+		$StartSound.play()
+		audio.stop()
+		await get_tree().create_timer(0.5).timeout
+		start_game.emit()
+		hide()
+		process_mode = Node.PROCESS_MODE_DISABLED
+		
+
 
 
 func _on_quit_pressed() -> void:

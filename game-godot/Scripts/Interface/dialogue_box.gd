@@ -2,6 +2,11 @@ class_name Textbox extends CanvasLayer
 
 @onready var margin_container: MarginContainer = $MarginContainer/MarginContainer
 @onready var label: RichTextLabel = $MarginContainer/MarginContainer/HBoxContainer/Label
+@onready var knight: AudioStreamPlayer = $knight
+@onready var princesse: AudioStreamPlayer = $princesse
+@onready var space: AudioStreamPlayer = $space
+@onready var princessdialogue: Sprite2D = $Princessdialogue
+@onready var chevalierdialogue: Sprite2D = $Chevalierdialogue
 
 @export var dialogue_path:String
 
@@ -11,6 +16,9 @@ var current_state=State.READY
 var text_queue:Array=[]
 var active
 
+enum chara{princesse,knight}
+
+var talking=chara.princesse
 
 func _ready() -> void:
 	hide()
@@ -20,12 +28,25 @@ func _ready() -> void:
 	
 
 func load_dialogue():
-	var file=FileAccess.open(dialogue_path,FileAccess.READ)
+	#var file=FileAccess.open("res://Assets/Dialogues/intro.txt",FileAccess.READ)
 	
-	while file.get_position()<file.get_length():
-		text_queue.append(file.get_line())
+	text_queue = ["Léandre : Who’s there ?",
+"Daelen : It’s me, my love.",
+"Léandre : Daelen ! What are you doing here ? If you mother found out--",
+"Daelen : My mother is a monster who took your eyes because of jealousy.",
+"I will never go back to her castle.",
+"Léandre : You can’t be serious. Queen Syphoria will send her horrendous goblins after us.",
+"And without my eyes, I can barely protect myself, let alone protect you…",
+"Daelen : Then we shall escape together. I would rather flee forever by your side than live",
+"in a world where my own mother killed the love of my life...",
+"Léandre : … So be it. Tonight, we will find freedom far from the kingdom of Galandr, far from your mother.",
+"Daelen : As long as we’re together, anything is possible.",
+"Come now, my love, hand in hand we will escape from this terrible kingdom.",]
 	
-	file.close()
+	#while file.get_position()<file.get_length():
+		#text_queue.append(file.get_line())
+	
+	#file.close()
 
 
 func _process(_delta: float) -> void:
@@ -34,13 +55,24 @@ func _process(_delta: float) -> void:
 			if !text_queue.is_empty() and active:
 				display_text()
 		State.READING:
+			if talking==chara.knight and !knight.is_playing():
+				knight.play()
+			elif talking==chara.princesse and !princesse.is_playing():
+				princesse.play()
 			if Input.is_action_just_pressed("Space"):
+				space.play()
 				tween.stop()
+				knight.stop()
+				princesse.stop()
+				label.visible_characters=label.text.length()
 				change_state(State.FINISHED)
 			elif !tween.is_running():
 				change_state(State.FINISHED)
+				knight.stop()
+				princesse.stop()
 		State.FINISHED:
 			if  Input.is_action_just_pressed("Space"):
+				space.play()
 				change_state(State.READY)
 				if text_queue.is_empty():
 					active=false
@@ -65,6 +97,14 @@ func show_textbox():
 func display_text():
 	var text = text_queue.pop_front()
 	label.text=text
+	if label.text.begins_with("Léandre"):
+		talking=chara.knight
+		princessdialogue.hide()
+		chevalierdialogue.show()
+	if label.text.begins_with("Daelen"):
+		talking=chara.princesse
+		princessdialogue.show()
+		chevalierdialogue.hide()
 	change_state(State.READING)
 	tween=create_tween()
 	label.visible_characters=0

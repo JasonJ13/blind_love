@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=4 uid="uid://ha71lww47kwv"]
+[gd_scene load_steps=8 format=4 uid="uid://ha71lww47kwv"]
 
 [ext_resource type="PackedScene" uid="uid://dbxc2gfd5mc56" path="res://Scenes/dialogue_box.tscn" id="1_b226h"]
 [ext_resource type="PackedScene" uid="uid://c5it3np1n0kfk" path="res://Scenes/tile_map_layer.tscn" id="1_geirw"]
 [ext_resource type="Script" uid="uid://cq5mv7qg5j1cl" path="res://Scripts/intro.gd" id="1_hwjxs"]
 [ext_resource type="PackedScene" uid="uid://ctvwc8ks84tv3" path="res://Scenes/Character/Princesse.tscn" id="2_hwjxs"]
 [ext_resource type="PackedScene" uid="uid://dp846te0n2pvb" path="res://Scenes/Character/Knight.tscn" id="3_rsiac"]
+[ext_resource type="AudioStream" uid="uid://byyraml382wyp" path="res://Assets/sons/SteelOpening.wav" id="6_rsiac"]
+[ext_resource type="AudioStream" uid="uid://bktmaorl2mxk7" path="res://Assets/sons/about a tragic love(pause_death).wav" id="7_3bmuq"]
 
 [node name="Intro" type="Node2D"]
 script = ExtResource("1_hwjxs")
@@ -21,17 +23,31 @@ offset_bottom = 479.0
 color = Color(0.6133905, 0.6133902, 0.61339027, 1)
 
 [node name="Princesse" parent="." node_paths=PackedStringArray("knight") instance=ExtResource("2_hwjxs")]
-position = Vector2(500, 421)
+z_index = 0
+position = Vector2(503, 442)
 scale = Vector2(0.5, 0.5)
 collision_mask = 1
-SPEED = 150.0
+SPEED = 60.0
 knight = NodePath("../Knight")
 
 [node name="Knight" parent="." node_paths=PackedStringArray("princesse") instance=ExtResource("3_rsiac")]
-position = Vector2(207, 415)
+position = Vector2(225, 442)
 scale = Vector2(0.25, 0.25)
 princesse = NodePath("../Princesse")
 
 [node name="dialogue_box" parent="." instance=ExtResource("1_b226h")]
 visible = false
 dialogue_path = "res://Assets/Dialogues/intro.txt"
+
+[node name="porte" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_rsiac")
+volume_db = -16.0
+
+[node name="musique" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_3bmuq")
+volume_db = -15.922
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
