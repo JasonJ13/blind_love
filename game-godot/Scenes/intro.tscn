@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=4 uid="uid://dskhem871gyhx"]
+[gd_scene load_steps=6 format=4 uid="uid://ha71lww47kwv"]
 
 [ext_resource type="PackedScene" uid="uid://dbxc2gfd5mc56" path="res://Scenes/dialogue_box.tscn" id="1_b226h"]
-[ext_resource type="PackedScene" path="res://Scenes/tile_map_layer.tscn" id="1_geirw"]
+[ext_resource type="PackedScene" uid="uid://c5it3np1n0kfk" path="res://Scenes/tile_map_layer.tscn" id="1_geirw"]
 [ext_resource type="Script" uid="uid://cq5mv7qg5j1cl" path="res://Scripts/intro.gd" id="1_hwjxs"]
 [ext_resource type="PackedScene" uid="uid://ctvwc8ks84tv3" path="res://Scenes/Character/Princesse.tscn" id="2_hwjxs"]
 [ext_resource type="PackedScene" uid="uid://dp846te0n2pvb" path="res://Scenes/Character/Knight.tscn" id="3_rsiac"]
@@ -21,8 +21,10 @@ offset_bottom = 479.0
 color = Color(0.6133905, 0.6133902, 0.61339027, 1)
 
 [node name="Princesse" parent="." node_paths=PackedStringArray("knight") instance=ExtResource("2_hwjxs")]
-position = Vector2(381, 434)
+position = Vector2(500, 421)
 scale = Vector2(0.5, 0.5)
+collision_mask = 1
+SPEED = 150.0
 knight = NodePath("../Knight")
 
 [node name="Knight" parent="." node_paths=PackedStringArray("princesse") instance=ExtResource("3_rsiac")]

@@ -7,6 +7,7 @@ extends RayCast2D
 @onready var charge_audio: AudioStreamPlayer = $charge
 @onready var attaque_audio: AudioStreamPlayer = $attaque
 
+signal body_touched
 var direction:Vector2
 
 enum STATE{charge,attaque,rest}
@@ -26,6 +27,8 @@ func _physics_process(delta: float) -> void:
 			line_2d.default_color=Color.DARK_RED
 			if !attaque_audio.is_playing():
 				attaque_audio.play()
+			if get_collider() is CharacterBody2D:
+				emit_signal("body_touched")
 		STATE.rest:
 			charge_audio.stop()
 			played_charge=false
