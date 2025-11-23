@@ -109,9 +109,8 @@ func _physics_process(delta: float) -> void:
 			if lever_present is Roue :
 				lever_present.desactive()
 			SPEED = 200
-	
-	
-	
+
+
 	### Mouvement Knight
 	var O1 = Input.is_action_just_pressed("Order 1")
 	var O2 = Input.is_action_just_pressed("Order 2")
@@ -136,6 +135,16 @@ func _physics_process(delta: float) -> void:
 	if knight && is_following && !is_close :
 		knight.follow()
 		is_close = true
+
+	if is_following != null:
+		$ControlHints.connectable = is_close && !is_following
+		$ControlHints.disconnectable = is_close && is_following
+	else:
+		$ControlHints.connectable = false
+		
+
+	$ControlHints.interactable = lever_present != null
+	$ControlHints.orderable = (lever_present != null) && is_close && (is_following != null)
 
 
 func lever_reach(body: Node2D) -> void:
