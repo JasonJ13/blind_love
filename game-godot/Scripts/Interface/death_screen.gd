@@ -5,6 +5,9 @@ extends CanvasLayer
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 var is_active=false
 
+signal retry
+signal go_menu
+
 func activate():
 	if !is_active:
 		stop_all_audio()
@@ -18,11 +21,8 @@ func activate():
 
 func _on_retry_pressed() -> void:
 	is_active=false
-	princesse.input_disabled=false
-	get_tree().reload_current_scene()
+	retry.emit()
 	
-
-
 
 
 func _on_quit_pressed() -> void:
@@ -30,13 +30,9 @@ func _on_quit_pressed() -> void:
 
 func _on_backmainmenu_pressed() -> void:
 
-	var tree = get_tree()
-	var cur_scene = tree.get_current_scene()
-	var packed_scene: PackedScene = load("res://Scenes/Interface/main_menu.tscn") 
-	var new_scene = packed_scene.instantiate()
-	tree.get_root().add_child(new_scene)
-	tree.set_current_scene(new_scene)
-	tree.get_root().remove_child(cur_scene)
+	go_menu.emit()
+
+
 	
 func stop_all_audio():
 	var root = get_tree().current_scene
