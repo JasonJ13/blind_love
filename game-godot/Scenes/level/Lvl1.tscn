@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=4 uid="uid://j1dr4dqi7qii"]
 
-[ext_resource type="PackedScene" path="res://Scenes/tile_map_layer.tscn" id="1_1betb"]
+[ext_resource type="PackedScene" uid="uid://c5it3np1n0kfk" path="res://Scenes/tile_map_layer.tscn" id="1_1betb"]
 [ext_resource type="Script" uid="uid://bm7dps267umgr" path="res://Scripts/level/lvl_1.gd" id="1_74igr"]
 [ext_resource type="PackedScene" uid="uid://bl6vp6hrj0vri" path="res://Scenes/Trap/pics.tscn" id="2_benow"]
 [ext_resource type="PackedScene" uid="uid://bdq6q2syb1bh1" path="res://Scenes/lever/roue.tscn" id="4_74igr"]
@@ -13,7 +13,7 @@ size = Vector2(110, 37)
 
 [node name="Lvl1" type="Node2D" node_paths=PackedStringArray("grill", "roues", "spawn_point_princesse", "spawn_point_knight")]
 script = ExtResource("1_74igr")
-music = null
+music = false
 grill = NodePath("grill")
 roues = NodePath("Roue")
 spawn_point_princesse = NodePath("princess_spawn")
