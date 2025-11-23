@@ -10,6 +10,9 @@ extends CharacterBody2D
 var old_direction = 'down'
 var new_direction = 'down'
 
+@onready var sound_hold : AudioStreamPlayer2D = $HoldStreamPlayer2D
+@onready var sound_let : AudioStreamPlayer2D = $LetStreamPlayer2D
+
 @export var knight : CharacterBody2D
 var is_following : bool = true
 var is_close : bool = true
@@ -98,12 +101,14 @@ func _physics_process(delta: float) -> void:
 	if (O1 || O2) && is_close:
 		
 		if !is_following :
+			sound_hold.play()
 			is_following = true
 			knight.drop_lever()
 		
 		else :
 			if O1 :
 				is_following = false
+				sound_let.play()
 			
 			elif O2 && lever_present :
 				knight.go_to_lever(lever_present)
