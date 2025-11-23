@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://catqjkldhaaui"]
+[gd_scene load_steps=6 format=4 uid="uid://catqjkldhaaui"]
 
 [ext_resource type="PackedScene" uid="uid://c5it3np1n0kfk" path="res://Scenes/tile_map_layer.tscn" id="1_didyv"]
 [ext_resource type="PackedScene" uid="uid://bl6vp6hrj0vri" path="res://Scenes/Trap/pics.tscn" id="2_8enbx"]
 [ext_resource type="PackedScene" uid="uid://5urt5nn1xqdy" path="res://Scenes/Trap/lame_métronome.tscn" id="3_v7e3u"]
 [ext_resource type="PackedScene" uid="uid://cubwx1ohu5orf" path="res://Scenes/Trap/Tour.tscn" id="4_v7e3u"]
+[ext_resource type="PackedScene" uid="uid://bdq6q2syb1bh1" path="res://Scenes/roue.tscn" id="5_nm438"]
 
 [node name="Lvl2" type="Node2D"]
 
@@ -126,3 +127,18 @@ position = Vector2(266, 706)
 
 [node name="Pics34" parent="." instance=ExtResource("2_8enbx")]
 position = Vector2(82, 430)
+
+[node name="Roue" parent="." instance=ExtResource("5_nm438")]
+position = Vector2(727, 203)
+
+[node name="Roue2" parent="." instance=ExtResource("5_nm438")]
+position = Vector2(111, -139)
+
+[node name="Pics35" parent="." instance=ExtResource("2_8enbx")]
+position = Vector2(585, 438)
+
+[node name="Pics36" parent="." instance=ExtResource("2_8enbx")]
+position = Vector2(581, 542)
+
+[node name="Pics37" parent="." instance=ExtResource("2_8enbx")]
+position = Vector2(686, 672)
