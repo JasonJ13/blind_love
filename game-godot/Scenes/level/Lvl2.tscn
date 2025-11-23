@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://catqjkldhaaui"]
+[gd_scene load_steps=8 format=4 uid="uid://catqjkldhaaui"]
 
 [ext_resource type="PackedScene" uid="uid://c5it3np1n0kfk" path="res://Scenes/tile_map_layer.tscn" id="1_didyv"]
 [ext_resource type="PackedScene" uid="uid://bl6vp6hrj0vri" path="res://Scenes/Trap/pics.tscn" id="2_8enbx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://5urt5nn1xqdy" path="res://Scenes/Trap/lame_métronome.tscn" id="3_v7e3u"]
 [ext_resource type="PackedScene" uid="uid://cubwx1ohu5orf" path="res://Scenes/Trap/Tour.tscn" id="4_v7e3u"]
 [ext_resource type="PackedScene" path="res://Scenes/roue.tscn" id="5_nm438"]
+[ext_resource type="PackedScene" uid="uid://d2xf08crbamjt" path="res://Scenes/lever/lever.tscn" id="7_qsl34"]
 
 [node name="Lvl2" type="Node2D"]
 
@@ -163,3 +164,6 @@ texture = ExtResource("2_ts7s4")
 position = Vector2(976.00006, 354)
 scale = Vector2(2.84375, 1)
 texture = ExtResource("2_ts7s4")
+
+[node name="Lever" parent="." instance=ExtResource("7_qsl34")]
+position = Vector2(771, -49)
