@@ -23,6 +23,8 @@ var lever_present : Roue = null
 
 @export var light : bool = true
 
+var input_disabled=false
+
 
 func _ready() -> void :
 	if light :
@@ -63,6 +65,8 @@ func _physics_process(delta: float) -> void:
 	if distance_kn > range_max_rope*3/4 && opposite :
 		velocity = velocity * ((abs(range_max_rope - distance_kn)) / range_max_rope )
 	
+	if input_disabled:
+		velocity=Vector2.ZERO
 	move_and_slide()
 	
 	
@@ -133,7 +137,7 @@ func _physics_process(delta: float) -> void:
 	
 	is_close = position.distance_to(knight.position) < area_pull_radius +.01
 	
-	if knight && is_following && !is_close :
+	if knight && is_following && !is_close && !input_disabled :
 		knight.follow()
 		is_close = true
 
@@ -147,7 +151,11 @@ func lever_leave(body: Node2D) -> void:
 	if body == lever_present :
 		lever_present = null
 
+func play_animation(anim):
+	sprite.play(anim)
 
+func stop_animation():
+	sprite.frame=0
 
 
 @onready var rope = $Rope

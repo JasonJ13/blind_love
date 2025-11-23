@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://bfd1xc46ai83o" path="res://Assets/Tour+oeil/TourOeilFront.png" id="2_dd7vw"]
 [ext_resource type="Script" uid="uid://c1k80y8rumfk3" path="res://Scripts/lumière.gd" id="2_esq5d"]
 [ext_resource type="Texture2D" uid="uid://tppwc3xo0uv1" path="res://Assets/Tour+oeil/TourOeilL45.png" id="3_esq5d"]
-[ext_resource type="AudioStream" path="res://Assets/sons/tourCharge.wav" id="3_qvv6y"]
-[ext_resource type="AudioStream" path="res://Assets/sons/tourShoot.wav" id="4_qqeo2"]
+[ext_resource type="AudioStream" uid="uid://4j6ctr0xdfnb" path="res://Assets/sons/tourCharge.wav" id="3_qvv6y"]
+[ext_resource type="AudioStream" uid="uid://dmrp61iktpabc" path="res://Assets/sons/tourShoot.wav" id="4_qqeo2"]
 [ext_resource type="Texture2D" uid="uid://dpplr3oapgvn8" path="res://Assets/Tour+oeil/TourOeilL90.png" id="4_qvv6y"]
 [ext_resource type="Texture2D" uid="uid://vqyg3usgj0gv" path="res://Assets/Tour+oeil/TourOeilR45.png" id="5_qqeo2"]
 [ext_resource type="Texture2D" uid="uid://cb6v148g4xhui" path="res://Assets/Tour+oeil/TourOeilR90.png" id="6_3m88o"]
@@ -146,5 +146,6 @@ visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
+[connection signal="body_touched" from="Lumière" to="." method="_on_lumière_body_touched"]
 [connection signal="body_entered" from="Zone_detection" to="." method="_on_zone_detection_body_entered"]
 [connection signal="body_exited" from="Zone_detection" to="." method="_on_zone_detection_body_exited"]

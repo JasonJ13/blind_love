@@ -6,6 +6,8 @@ class_name Tour extends Trap
 @export var scale_detection:int
 @onready var zone_detection: Area2D = $Zone_detection
 
+signal touched
+
 var cibles: Array[CharacterBody2D]
 var current_cible:CharacterBody2D
 
@@ -138,3 +140,7 @@ func _on_zone_detection_body_exited(body: Node2D) -> void:
 			sleep()
 		else :
 			current_cible=cibles[0]
+
+
+func _on_lumière_body_touched() -> void:
+	emit_signal("touched")
