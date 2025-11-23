@@ -1,11 +1,11 @@
-[gd_scene load_steps=27 format=3 uid="uid://dp846te0n2pvb"]
+[gd_scene load_steps=29 format=3 uid="uid://dp846te0n2pvb"]
 
 [ext_resource type="Script" uid="uid://vr76kxqlwg8b" path="res://Scripts/Character/knight.gd" id="1_sv1xq"]
 [ext_resource type="Texture2D" uid="uid://b772cxvbs50ev" path="res://Assets/sword_swoosh.png" id="2_mmvx3"]
 [ext_resource type="Texture2D" uid="uid://cwnd2v45faxct" path="res://Assets/KnightSheet.png" id="3_x8ec4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_sv1xq"]
-radius = 16.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmvx3"]
+size = Vector2(82, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x8ec4"]
 radius = 256.0
@@ -209,16 +209,23 @@ _data = {
 &"sword_swing": SubResource("Animation_3kkwa")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_mmvx3"]
+radius = 128.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3kkwa"]
+size = Vector2(99, 62)
+
 [node name="Knight" type="CharacterBody2D"]
-collision_mask = 5
+collision_mask = 7
 script = ExtResource("1_sv1xq")
 
 [node name="center" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_sv1xq")
+position = Vector2(-2, 76)
+shape = SubResource("RectangleShape2D_mmvx3")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hear" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hear"]
 shape = SubResource("CircleShape2D_x8ec4")
 
 [node name="Label" type="Label" parent="."]
@@ -254,7 +261,23 @@ libraries = {
 }
 speed_scale = 4.0
 
-[connection signal="body_entered" from="Area2D" to="." method="hear_something"]
-[connection signal="body_entered" from="Area2D" to="." method="lever_reach"]
-[connection signal="body_exited" from="Area2D" to="." method="Deaf_bruh"]
+[node name="Grab" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Grab"]
+shape = SubResource("CircleShape2D_mmvx3")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(1.5, 83)
+shape = SubResource("RectangleShape2D_3kkwa")
+
+[connection signal="body_entered" from="Hear" to="." method="hear_something"]
+[connection signal="body_exited" from="Hear" to="." method="Deaf_bruh"]
 [connection signal="timeout" from="Moving" to="." method="stop"]
+[connection signal="body_entered" from="Grab" to="." method="lever_reach"]
+[connection signal="body_exited" from="Grab" to="." method="trap_leave"]
+[connection signal="body_entered" from="Hitbox" to="." method="hitbox_enter"]
+[connection signal="body_exited" from="Hitbox" to="." method="hitbox_exit"]

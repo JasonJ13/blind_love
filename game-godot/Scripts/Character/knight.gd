@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 
 
-@export var radius_center : int = 12
 @onready var center : CollisionShape2D = $center
 
 @onready var label = $Label
@@ -60,9 +59,14 @@ func mouvement_detection(distance_objective : Vector2) -> void :
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	center.shape.radius = radius_center
 	set_princesse(princesse,princesse.get_radius())
 
+func play_animation(anim):
+	sprite.play(anim)
+	
+func stop_anim():
+	sprite.frame=0
+	sprite.stop()
 
 func remove_one_trap() -> void :
 	nmb_hear -= 1
@@ -109,12 +113,11 @@ func stop() -> void:
 
 
 
-var lever : Roue
+var lever : Lever
 var not_reach : bool = true
 
-func go_to_lever(l : Roue) :
+func go_to_lever(l : Lever) :
 	lever = l
-	print("target acquire")
 
 func drop_lever() :
 	if lever : 
@@ -131,11 +134,43 @@ func _process(delta: float) -> void:
 		velocity = direction.normalized() * SPEED
 		
 		move_and_slide()
+		princesse.move_rope(position.distance_to(princesse.position),get_angle_to(princesse.position))
+		
+		if position.distance_to(lever.position) < 64 :
+			lever_reach(lever)
 
 
 func lever_reach(body: Node2D) -> void:
 	
 	if lever && body == lever :
-		print("lever reach")
 		not_reach = false
 		lever.active()
+	
+
+
+
+###MORT
+
+signal dead
+
+func die() -> void :
+	dead.emit()
+	print("knight dead")
+
+
+func trap_leave(body: Node2D) -> void:
+	if body is Trap :
+		body.activation.disconnect(die)
+
+
+func hitbox_enter(body: Node2D) -> void:
+	if body is Trap :
+		print("enter")
+		body.activation.connect(die)
+		if body.is_actived() :
+			die()
+
+
+func hitbox_exit(body: Node2D) -> void:
+	if body is Trap :
+		body.activation.disconnect(die)

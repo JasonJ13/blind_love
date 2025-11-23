@@ -1,14 +1,14 @@
-[gd_scene load_steps=28 format=3 uid="uid://ctvwc8ks84tv3"]
+[gd_scene load_steps=29 format=3 uid="uid://ctvwc8ks84tv3"]
 
 [ext_resource type="Script" uid="uid://don0026c0tl5b" path="res://Scripts/Character/princesse.gd" id="1_l7cwq"]
 [ext_resource type="Texture2D" uid="uid://buxtxm5h2rs3e" path="res://Assets/PrincessSheet.png" id="3_1jmrq"]
 [ext_resource type="AudioStream" uid="uid://bs5bkef5f3elt" path="res://Assets/sons/HandLet.wav" id="3_kpivn"]
 [ext_resource type="AudioStream" uid="uid://emqnvqb8nnd6" path="res://Assets/sons/HandHold.wav" id="4_kpivn"]
-[ext_resource type="PackedScene" uid="uid://duisxphjkl0hi" path="res://Scenes/Interface/ControlHints.tscn" id="5_ihutj"]
+[ext_resource type="PackedScene" uid="uid://c2sc4wgpqbmw4" path="res://Scenes/Interface/ControlHints.tscn" id="5_ihutj"]
 [ext_resource type="Script" uid="uid://pvp4p2yiej4u" path="res://Scripts/Interface/control_hints.gd" id="6_mieic"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l7cwq"]
-size = Vector2(88, 84)
+size = Vector2(104, 44)
 
 [sub_resource type="Gradient" id="Gradient_l7cwq"]
 offsets = PackedFloat32Array(0, 0.68666667)
@@ -157,14 +157,18 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iwqjw"]
-radius = 128.0
+radius = 96.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mieic"]
+size = Vector2(156, 66)
 
 [node name="Princesse" type="CharacterBody2D"]
+z_index = 1
 collision_mask = 5
 script = ExtResource("1_l7cwq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 35)
+position = Vector2(0, 45)
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_l7cwq")
 
@@ -210,5 +214,15 @@ offset_right = -76.0
 offset_bottom = 69.0
 script = ExtResource("6_mieic")
 
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 42.5)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_mieic")
+
 [connection signal="body_entered" from="Area2D" to="." method="lever_reach"]
 [connection signal="body_exited" from="Area2D" to="." method="lever_leave"]
+[connection signal="body_entered" from="Hitbox" to="." method="hitbox_enter"]
+[connection signal="body_exited" from="Hitbox" to="." method="hitbox_exit"]

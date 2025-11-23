@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://qk4wg1krcsce"]
+
+[ext_resource type="PackedScene" uid="uid://dp846te0n2pvb" path="res://Scenes/Character/Knight.tscn" id="1_1ny42"]
+[ext_resource type="Script" uid="uid://cc3dneuol0es5" path="res://Scripts/level/main_level.gd" id="1_yutd6"]
+[ext_resource type="PackedScene" uid="uid://ctvwc8ks84tv3" path="res://Scenes/Character/Princesse.tscn" id="2_yutd6"]
+
+[node name="Main_level" type="Node2D"]
+script = ExtResource("1_yutd6")
+
+[node name="Knight" parent="." node_paths=PackedStringArray("princesse") instance=ExtResource("1_1ny42")]
+scale = Vector2(0.25, 0.25)
+princesse = NodePath("../Princesse")
+
+[node name="Princesse" parent="." node_paths=PackedStringArray("knight") instance=ExtResource("2_yutd6")]
+scale = Vector2(0.5, 0.5)
+SPEED = 200.0
+knight = NodePath("../Knight")

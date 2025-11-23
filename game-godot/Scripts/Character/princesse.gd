@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 var old_direction = null
 var new_direction = null
+@onready var control_hints: Control = $ControlHints
 
 @onready var sound_hold : AudioStreamPlayer2D = $HoldStreamPlayer2D
 @onready var sound_let : AudioStreamPlayer2D = $LetStreamPlayer2D
@@ -19,9 +20,11 @@ var is_close : bool = true
 
 @export var range_max_rope : int = 256 
 
-var lever_present : Roue = null
+var lever_present : Lever = null
 
 @export var light : bool = true
+
+var input_disabled=false
 
 
 func _ready() -> void :
@@ -36,7 +39,8 @@ func get_radius() -> int :
 
 @warning_ignore("unused_parameter")
 func _physics_process(delta: float) -> void:
-
+	if input_disabled:
+		control_hints.hide()
 	### Princesse Mouvement
 	var directionX := Input.get_axis("Left", "Right")
 	var directionY := Input.get_axis("Up","Down")
@@ -63,40 +67,42 @@ func _physics_process(delta: float) -> void:
 	if distance_kn > range_max_rope*3/4 && opposite :
 		velocity = velocity * ((abs(range_max_rope - distance_kn)) / range_max_rope )
 	
+	if input_disabled:
+		velocity=Vector2.ZERO
 	move_and_slide()
 	
 	
 	
 	### Princess Sprite
-	
-	if velocity == Vector2(0,0) :
-		sprite.frame = 0
-		sprite.stop()
-	
-	else :
-		move_rope(distance_kn, angle_kn)
+	if !input_disabled:
+		if velocity == Vector2(0,0) :
+			sprite.frame = 0
+			sprite.stop()
 		
-		if position.y > knight.position.y :
-			z_index = 1
-			knight.z_index = 0
 		else :
-			z_index = 0
-			knight.z_index = 1
-		
-		if abs(velocity.x) > abs(velocity.y) :
-			if velocity.x > 0 :
-				new_direction = 'right'
+			move_rope(distance_kn, angle_kn)
+			
+			if position.y > knight.position.y :
+				z_index = 1
+				knight.z_index = 0
 			else :
-				new_direction = 'left'
-		else :
-			if velocity.y > 0 :
-				new_direction = 'down'
+				z_index = 0
+				knight.z_index = 1
+			
+			if abs(velocity.x) > abs(velocity.y) :
+				if velocity.x > 0 :
+					new_direction = 'right'
+				else :
+					new_direction = 'left'
 			else :
-				new_direction = 'up'
-		
-		if new_direction != old_direction :
-			sprite.play(new_direction)
-			old_direction = new_direction
+				if velocity.y > 0 :
+					new_direction = 'down'
+				else :
+					new_direction = 'up'
+			
+			if new_direction != old_direction :
+				sprite.play(new_direction)
+				old_direction = new_direction
 	
 	
 	### Activate roue
@@ -106,7 +112,7 @@ func _physics_process(delta: float) -> void:
 			lever_present.active()
 			SPEED = 0
 		elif Input.is_action_just_released("ui_select") :
-			if lever_present is Roue :
+			if lever_present is Lever :
 				lever_present.desactive()
 			SPEED = 200
 
@@ -132,31 +138,37 @@ func _physics_process(delta: float) -> void:
 	
 	is_close = position.distance_to(knight.position) < area_pull_radius +.01
 	
-	if knight && is_following && !is_close :
+	if knight && is_following && !is_close && !input_disabled :
 		knight.follow()
 		is_close = true
 
-	if is_following != null:
-		$ControlHints.connectable = is_close && !is_following
-		$ControlHints.disconnectable = is_close && is_following
-	else:
-		$ControlHints.connectable = false
-		
 
+	$ControlHints.connected = is_close
 	$ControlHints.interactable = lever_present != null
 	$ControlHints.orderable = (lever_present != null) && is_close && (is_following != null)
 
 
 func lever_reach(body: Node2D) -> void:
-	if body is Roue :
+	if body is Lever :
 		lever_present = body
+	
+	
+		
 
 
 func lever_leave(body: Node2D) -> void:
 	if body == lever_present :
 		lever_present = null
+	
 
 
+
+func play_animation(anim):
+	sprite.play(anim)
+
+func stop_animation():
+	sprite.frame=0
+	sprite.stop()
 
 
 @onready var rope = $Rope
@@ -166,5 +178,23 @@ func move_rope(distance_kn : float, angle_kn : float) -> void :
 	rope.rotation = angle_kn + PI/2
 	rope.size.y = distance_kn *2
 	
-	
-	
+
+###MORT
+
+signal dead
+
+func die() -> void :
+	dead.emit()
+	print("princess dead")
+
+
+func hitbox_enter(body: Node2D) -> void:
+	if body is Trap :
+		body.activation.connect(die)
+		if body.is_actived() :
+			die()
+
+
+func hitbox_exit(body: Node2D) -> void:
+	if body is Trap :
+		body.activation.disconnect(die)
