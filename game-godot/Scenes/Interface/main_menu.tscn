@@ -122,11 +122,11 @@ vertical_alignment = 1
 
 [node name="StartSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ihmx1")
-volume_db = -29.114
+volume_db = -7.67
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_lpc36")
-volume_db = -16.937
+volume_db = -1.927
 autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
