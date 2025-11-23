@@ -18,5 +18,6 @@ func desactivate() -> void :
 func activate():
 	if !is_actived() :
 		activation.emit()
+		print("pic up")
 	
 	active=true

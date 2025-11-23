@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 
 
-@export var radius_center : int = 12
 @onready var center : CollisionShape2D = $center
 
 @onready var label = $Label
@@ -60,7 +59,6 @@ func mouvement_detection(distance_objective : Vector2) -> void :
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	center.shape.radius = radius_center
 	set_princesse(princesse,princesse.get_radius())
 
 
@@ -114,7 +112,6 @@ var not_reach : bool = true
 
 func go_to_lever(l : Lever) :
 	lever = l
-	print("target acquire")
 
 func drop_lever() :
 	if lever : 
@@ -142,3 +139,32 @@ func lever_reach(body: Node2D) -> void:
 	if lever && body == lever :
 		not_reach = false
 		lever.active()
+	
+
+
+
+###MORT
+
+signal dead
+
+func die() -> void :
+	dead.emit()
+	print("knight dead")
+
+
+func trap_leave(body: Node2D) -> void:
+	if body is Trap :
+		body.activation.disconnect(die)
+
+
+func hitbox_enter(body: Node2D) -> void:
+	if body is Trap :
+		print("enter")
+		body.activation.connect(die)
+		if body.is_actived() :
+			die()
+
+
+func hitbox_exit(body: Node2D) -> void:
+	if body is Trap :
+		body.activation.disconnect(die)
