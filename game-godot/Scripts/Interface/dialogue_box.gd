@@ -1,4 +1,4 @@
-class_name Textbox extends Control
+class_name Textbox extends CanvasLayer
 
 @onready var margin_container: MarginContainer = $MarginContainer/MarginContainer
 @onready var label: RichTextLabel = $MarginContainer/MarginContainer/HBoxContainer/Label
@@ -17,8 +17,7 @@ func _ready() -> void:
 	label.hide()
 	
 	load_dialogue()
-	print(text_queue)
-	active=true
+	
 
 func load_dialogue():
 	var file=FileAccess.open(dialogue_path,FileAccess.READ)
