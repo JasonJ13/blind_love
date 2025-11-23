@@ -3,6 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://c4a2ipm8nvptc" path="res://Scenes/level/lvl_3.tscn" id="1_5pmam"]
 
 [node name="lvl3" instance=ExtResource("1_5pmam")]
+position = Vector2(620, 479)
+
+[node name="Tour" parent="." index="53"]
+scale_detection = 3
 
 [node name="Tour2" parent="." index="58"]
-scale_detection = 3
+scale_detection = 2
+
+[node name="Tour3" parent="." index="59"]
+scale_detection = 2
