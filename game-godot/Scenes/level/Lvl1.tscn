@@ -13,7 +13,6 @@ size = Vector2(110, 37)
 
 [node name="Lvl1" type="Node2D" node_paths=PackedStringArray("grill", "roues", "spawn_point_princesse", "spawn_point_knight")]
 script = ExtResource("1_74igr")
-music = false
 grill = NodePath("grill")
 roues = NodePath("Roue")
 spawn_point_princesse = NodePath("princess_spawn")
@@ -102,10 +101,10 @@ grow_vertical = 2
 stream = ExtResource("7_3rs2y")
 
 [node name="princess_spawn" type="Node2D" parent="."]
-position = Vector2(337, 447)
+position = Vector2(407, 444)
 
 [node name="knight_spawn" type="Node2D" parent="."]
-position = Vector2(288, 448)
+position = Vector2(364, 453)
 
 [node name="Area2D" type="Area2D" parent="."]
 

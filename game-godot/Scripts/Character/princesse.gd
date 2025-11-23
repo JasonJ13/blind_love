@@ -141,8 +141,7 @@ func _physics_process(delta: float) -> void:
 		is_close = true
 
 
-		
-
+	$ControlHints.connected = is_close
 	$ControlHints.interactable = lever_present != null
 	$ControlHints.orderable = (lever_present != null) && is_close && (is_following != null)
 
@@ -150,11 +149,17 @@ func _physics_process(delta: float) -> void:
 func lever_reach(body: Node2D) -> void:
 	if body is Lever :
 		lever_present = body
+	
+	
+		
 
 
 func lever_leave(body: Node2D) -> void:
 	if body == lever_present :
 		lever_present = null
+	
+
+
 
 func play_animation(anim):
 	sprite.play(anim)
@@ -170,5 +175,24 @@ func move_rope(distance_kn : float, angle_kn : float) -> void :
 	rope.rotation = angle_kn + PI/2
 	rope.size.y = distance_kn *2
 	
-	
-	
+
+###MORT
+
+signal dead
+
+func die() -> void :
+	dead.emit()
+	print("princess dead")
+
+
+func hitbox_enter(body: Node2D) -> void:
+	print("detection")
+	if body is Trap :
+		body.activation.connect(die)
+		if body.is_actived() :
+			die()
+
+
+func hitbox_exit(body: Node2D) -> void:
+	if body is Trap :
+		body.activation.disconnect(die)
