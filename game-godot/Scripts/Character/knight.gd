@@ -61,6 +61,12 @@ func mouvement_detection(distance_objective : Vector2) -> void :
 func _ready() -> void:
 	set_princesse(princesse,princesse.get_radius())
 
+func play_animation(anim):
+	sprite.play(anim)
+	
+func stop_anim():
+	sprite.frame=0
+	sprite.stop()
 
 func remove_one_trap() -> void :
 	nmb_hear -= 1

@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbxc2gfd5mc56"]
+[gd_scene load_steps=9 format=3 uid="uid://dbxc2gfd5mc56"]
 
 [ext_resource type="Script" uid="uid://qryd25h7bnll" path="res://Scripts/Interface/dialogue_box.gd" id="1_my7ks"]
 [ext_resource type="FontFile" uid="uid://d14hss2wymye0" path="res://Assets/alagard.ttf" id="2_hk0u4"]
+[ext_resource type="AudioStream" uid="uid://criwhgw84mhca" path="res://Assets/sons/DialogueBlipKnight.wav" id="3_hg80k"]
+[ext_resource type="AudioStream" uid="uid://bgbjyoeenfkmv" path="res://Assets/sons/DialogueBlipPrincess.wav" id="4_c65s7"]
+[ext_resource type="AudioStream" uid="uid://lt40itwde7au" path="res://Assets/sons/DialogueAdvance.wav" id="5_63nfq"]
+[ext_resource type="Texture2D" uid="uid://eu1gso0mms55" path="res://Assets/Princessdialogue.png" id="6_63nfq"]
+[ext_resource type="Texture2D" uid="uid://c743dch37m53d" path="res://Assets/Chevalierdialogue.png" id="7_v08tw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pymh2"]
 bg_color = Color(0, 0, 0, 0.4627451)
@@ -23,7 +28,7 @@ offset_top = -317.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 40
-theme_override_constants/margin_top = 40
+theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
@@ -52,3 +57,22 @@ fit_content = true
 [node name="Panel" type="Panel" parent="MarginContainer/MarginContainer"]
 visible = false
 layout_mode = 2
+
+[node name="knight" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hg80k")
+
+[node name="princesse" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_c65s7")
+
+[node name="space" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_63nfq")
+
+[node name="Princessdialogue" type="Sprite2D" parent="."]
+position = Vector2(100, 320)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("6_63nfq")
+
+[node name="Chevalierdialogue" type="Sprite2D" parent="."]
+position = Vector2(100, 320)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("7_v08tw")
