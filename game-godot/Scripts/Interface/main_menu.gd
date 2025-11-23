@@ -9,5 +9,6 @@ func _on_start_pressed() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 
 
+
 func _on_quit_pressed() -> void:
 	get_tree().quit()

@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+@export var princesse:CharacterBody2D
 var active = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,9 +19,11 @@ func _process(_delta: float) -> void:
 	
 
 func hide_menu():
+	princesse.input_disabled=false
 	hide()
 
 func show_menu():
+	princesse.input_disabled=true
 	show()
 
 func _on_resume_pressed() -> void:

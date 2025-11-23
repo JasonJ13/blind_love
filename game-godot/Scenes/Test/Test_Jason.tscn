@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy8bq3a5ieexo"]
+[gd_scene load_steps=8 format=3 uid="uid://cy8bq3a5ieexo"]
 
 [ext_resource type="Script" uid="uid://duac1x4n0u33r" path="res://Scripts/Test/test_jason.gd" id="1_e47bv"]
 [ext_resource type="PackedScene" uid="uid://ctvwc8ks84tv3" path="res://Scenes/Character/Princesse.tscn" id="2_rnu5p"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dtdj7n8tjmhto" path="res://Scenes/Trap/Trap_example.tscn" id="4_wki4i"]
 [ext_resource type="AudioStream" uid="uid://bhgwr7a18eq0n" path="res://Assets/blindHeartLooping.wav" id="5_iy1t8"]
 [ext_resource type="PackedScene" uid="uid://ch8f50j75l4dw" path="res://Scenes/Interface/pause_menu.tscn" id="6_rnu5p"]
+[ext_resource type="PackedScene" uid="uid://d1g7c45ty6knv" path="res://Scenes/Interface/death_screen.tscn" id="7_i2rs6"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_e47bv")
@@ -16,7 +17,6 @@ knight = NodePath("../Knight")
 [node name="Knight" parent="." node_paths=PackedStringArray("princesse") instance=ExtResource("3_i2rs6")]
 position = Vector2(-56, -46)
 scale = Vector2(0.5, 0.5)
-radius_center = 16
 princesse = NodePath("../Princesse")
 
 [node name="Trap_example" parent="." instance=ExtResource("4_wki4i")]
@@ -26,5 +26,12 @@ position = Vector2(324, 195)
 stream = ExtResource("5_iy1t8")
 autoplay = true
 
-[node name="CanvasLayer" parent="." instance=ExtResource("6_rnu5p")]
+[node name="CanvasLayer" parent="." node_paths=PackedStringArray("princesse") instance=ExtResource("6_rnu5p")]
 visible = false
+princesse = NodePath("../Princesse")
+
+[node name="CanvasLayer2" parent="." node_paths=PackedStringArray("princesse") instance=ExtResource("7_i2rs6")]
+visible = false
+princesse = NodePath("../Princesse")
+
+[connection signal="dead" from="Princesse" to="CanvasLayer2" method="activate"]

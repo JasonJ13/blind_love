@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://derw4yuvajtf"
-path="res://.godot/imported/Princessdialogue.png-8f9ae4e86c92b24704b325bb8097ffd4.ctex"
+uid="uid://nrnfd6wukqk4"
+path="res://.godot/imported/brique.png-0f65a2698f169ab9018400168a5f7a9b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/sons/Princessdialogue.png"
-dest_files=["res://.godot/imported/Princessdialogue.png-8f9ae4e86c92b24704b325bb8097ffd4.ctex"]
+source_file="res://Assets/brique.png"
+dest_files=["res://.godot/imported/brique.png-0f65a2698f169ab9018400168a5f7a9b.ctex"]
 
 [params]
 
