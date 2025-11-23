@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cubwx1ohu5orf" path="res://Scenes/Trap/Tour.tscn" id="2_xtqqp"]
 [ext_resource type="PackedScene" uid="uid://5urt5nn1xqdy" path="res://Scenes/Trap/lame_métronome.tscn" id="3_hqhqe"]
 [ext_resource type="PackedScene" uid="uid://bl6vp6hrj0vri" path="res://Scenes/Trap/pics.tscn" id="4_jy7ga"]
-[ext_resource type="PackedScene" path="res://Scenes/roue.tscn" id="5_rrts2"]
+[ext_resource type="PackedScene" uid="uid://bdq6q2syb1bh1" path="res://Scenes/lever/roue.tscn" id="6_speht"]
 [ext_resource type="PackedScene" uid="uid://d2xf08crbamjt" path="res://Scenes/lever/lever.tscn" id="7_1kfnt"]
 
 [node name="Lvl4" type="Node2D"]
@@ -177,14 +177,34 @@ scale = Vector2(3, 3)
 position = Vector2(2947, 179)
 scale = Vector2(3, 3)
 
-[node name="Roue" parent="." instance=ExtResource("5_rrts2")]
+[node name="Roue" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(2259, 401)
+script = null
 
 [node name="Tour5" parent="." instance=ExtResource("2_xtqqp")]
 position = Vector2(2254, 518)
 
-[node name="Roue2" parent="." instance=ExtResource("5_rrts2")]
+[node name="Roue2" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(2725, 140)
+script = null
 
 [node name="Pics34" parent="." instance=ExtResource("4_jy7ga")]
 position = Vector2(2319, 627)
@@ -424,3 +444,9 @@ scale = Vector2(2.5, 2.5)
 [node name="Lame25" parent="." instance=ExtResource("3_hqhqe")]
 position = Vector2(2106, 876.00006)
 scale = Vector2(2.5, 2.5)
+
+[node name="Roue3" parent="." instance=ExtResource("6_speht")]
+position = Vector2(2254, 399)
+
+[node name="Roue4" parent="." instance=ExtResource("6_speht")]
+position = Vector2(2729, 137)
