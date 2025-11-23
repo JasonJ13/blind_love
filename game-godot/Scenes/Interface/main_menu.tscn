@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://6psj7rrjbwen"]
+[gd_scene load_steps=12 format=3 uid="uid://6psj7rrjbwen"]
 
 [ext_resource type="Script" uid="uid://birr8fj3natu4" path="res://Scripts/Interface/main_menu.gd" id="1_x7gjw"]
 [ext_resource type="Texture2D" uid="uid://bgunvkwtjqr71" path="res://Assets/TitleScreenBackground.png" id="2_x7gjw"]
 [ext_resource type="FontFile" uid="uid://d14hss2wymye0" path="res://Assets/alagard.ttf" id="3_ihmx1"]
 [ext_resource type="AudioStream" uid="uid://dxuxkbdsblnrj" path="res://Assets/sons/MenuSelect.wav" id="4_ihmx1"]
 [ext_resource type="AudioStream" uid="uid://chsltn5gc4yff" path="res://Assets/sons/TitleScreen.mp3" id="4_lpc36"]
+[ext_resource type="PackedScene" uid="uid://c2sc4wgpqbmw4" path="res://Scenes/Interface/ControlHints.tscn" id="6_qr3g5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lpc36"]
 texture = ExtResource("2_x7gjw")
@@ -133,6 +134,18 @@ visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="ControlHints" parent="." instance=ExtResource("6_qr3g5")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -567.0
+offset_top = 19.0
+offset_right = -567.0
+offset_bottom = 19.0
+grow_vertical = 1
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]

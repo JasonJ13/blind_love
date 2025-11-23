@@ -39,6 +39,7 @@ func new_level() -> void :
 func reload_level() -> void :
 	current_level.queue_free()
 	current_level = levels[current_nmb_level].instantiate()
+	current_level.level_end.connect(finished_level)
 	
 	current_level.spawn(princess, knight)
 	princess.input_disabled=false

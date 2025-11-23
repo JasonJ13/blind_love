@@ -41,6 +41,8 @@ func get_radius() -> int :
 func _physics_process(delta: float) -> void:
 	if input_disabled:
 		control_hints.hide()
+	else : 
+		control_hints.show()
 	### Princesse Mouvement
 	var directionX := Input.get_axis("Left", "Right")
 	var directionY := Input.get_axis("Up","Down")
