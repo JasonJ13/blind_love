@@ -28,12 +28,25 @@ func _ready() -> void:
 	
 
 func load_dialogue():
-	var file=FileAccess.open(dialogue_path,FileAccess.READ)
+	#var file=FileAccess.open("res://Assets/Dialogues/intro.txt",FileAccess.READ)
 	
-	while file.get_position()<file.get_length():
-		text_queue.append(file.get_line())
+	text_queue = ["Léandre : Who’s there ?",
+"Daelen : It’s me, my love.",
+"Léandre : Daelen ! What are you doing here ? If you mother found out--",
+"Daelen : My mother is a monster who took your eyes because of jealousy.",
+"I will never go back to her castle.",
+"Léandre : You can’t be serious. Queen Syphoria will send her horrendous goblins after us.",
+"And without my eyes, I can barely protect myself, let alone protect you…",
+"Daelen : Then we shall escape together. I would rather flee forever by your side than live",
+"in a world where my own mother killed the love of my life...",
+"Léandre : … So be it. Tonight, we will find freedom far from the kingdom of Galandr, far from your mother.",
+"Daelen : As long as we’re together, anything is possible.",
+"Come now, my love, hand in hand we will escape from this terrible kingdom.",]
 	
-	file.close()
+	#while file.get_position()<file.get_length():
+		#text_queue.append(file.get_line())
+	
+	#file.close()
 
 
 func _process(_delta: float) -> void:
