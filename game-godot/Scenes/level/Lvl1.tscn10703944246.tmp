@@ -1,17 +1,15 @@
-[gd_scene load_steps=9 format=4 uid="uid://j1dr4dqi7qii"]
+[gd_scene load_steps=8 format=4 uid="uid://j1dr4dqi7qii"]
 
 [ext_resource type="PackedScene" uid="uid://c5it3np1n0kfk" path="res://Scenes/tile_map_layer.tscn" id="1_1betb"]
 [ext_resource type="Script" uid="uid://bm7dps267umgr" path="res://Scripts/level/lvl_1.gd" id="1_74igr"]
 [ext_resource type="PackedScene" uid="uid://bl6vp6hrj0vri" path="res://Scenes/Trap/pics.tscn" id="2_benow"]
 [ext_resource type="PackedScene" uid="uid://bdq6q2syb1bh1" path="res://Scenes/roue.tscn" id="4_74igr"]
-[ext_resource type="AudioStream" uid="uid://blco878ae88g2" path="res://Assets/sons/SteelFalling.wav" id="4_wu1ab"]
 [ext_resource type="PackedScene" uid="uid://ctvwc8ks84tv3" path="res://Scenes/Character/Princesse.tscn" id="5_kaa8h"]
 [ext_resource type="PackedScene" uid="uid://dp846te0n2pvb" path="res://Scenes/Character/Knight.tscn" id="6_3rs2y"]
 [ext_resource type="AudioStream" uid="uid://bhgwr7a18eq0n" path="res://Assets/blindHeartLooping.wav" id="7_3rs2y"]
 
 [node name="Lvl1" type="Node2D" node_paths=PackedStringArray("grill", "roues")]
 script = ExtResource("1_74igr")
-music = null
 grill = NodePath("grill")
 roues = NodePath("Roue")
 metadata/_custom_type_script = "uid://d0nmjx75p4rir"
@@ -32,10 +30,6 @@ offset_top = 362.0
 offset_right = 318.0
 offset_bottom = 479.0
 color = Color(0.6133905, 0.6133902, 0.61339027, 1)
-
-[node name="GrilleStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(848, 123)
-stream = ExtResource("4_wu1ab")
 
 [node name="Roue" type="Node2D" parent="."]
 

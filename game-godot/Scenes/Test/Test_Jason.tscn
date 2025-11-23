@@ -15,8 +15,8 @@ knight = NodePath("../Knight")
 [node name="Knight" parent="." node_paths=PackedStringArray("princesse") instance=ExtResource("3_i2rs6")]
 position = Vector2(-56, -46)
 scale = Vector2(0.5, 0.5)
-princesse = NodePath("../Princesse")
 radius_center = 16
+princesse = NodePath("../Princesse")
 
 [node name="Trap_example" parent="." instance=ExtResource("4_wki4i")]
 position = Vector2(324, 195)
