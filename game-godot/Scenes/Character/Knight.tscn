@@ -224,6 +224,8 @@ position = Vector2(-2, 76)
 shape = SubResource("RectangleShape2D_mmvx3")
 
 [node name="Hear" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hear"]
 shape = SubResource("CircleShape2D_x8ec4")
