@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bs5bkef5f3elt"
-path="res://.godot/imported/HandLet.wav-5ecf95898d829cede6258bcd0b8f7f4d.sample"
+uid="uid://dmrp61iktpabc"
+path="res://.godot/imported/tourShoot.wav-bfad3f33f42585d3e573e208a4007b6f.sample"
 
 [deps]
 
-source_file="res://Assets/sons/HandLet.wav"
-dest_files=["res://.godot/imported/HandLet.wav-5ecf95898d829cede6258bcd0b8f7f4d.sample"]
+source_file="res://Assets/sons/tourShoot.wav"
+dest_files=["res://.godot/imported/tourShoot.wav-bfad3f33f42585d3e573e208a4007b6f.sample"]
 
 [params]
 

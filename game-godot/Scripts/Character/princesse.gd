@@ -10,6 +10,9 @@ extends CharacterBody2D
 var old_direction = null
 var new_direction = null
 
+@onready var sound_hold : AudioStreamPlayer2D = $HoldStreamPlayer2D
+@onready var sound_let : AudioStreamPlayer2D = $LetStreamPlayer2D
+
 @export var knight : CharacterBody2D
 var is_following : bool = true
 var is_close : bool = true
@@ -106,21 +109,22 @@ func _physics_process(delta: float) -> void:
 			if lever_present is Lever :
 				lever_present.desactive()
 			SPEED = 200
-	
-	
-	
+
+
 	### Mouvement Knight
 	var O1 = Input.is_action_just_pressed("Order 1")
 	var O2 = Input.is_action_just_pressed("Order 2")
 	if (O1 || O2) && is_close:
 		
 		if !is_following :
+			sound_hold.play()
 			is_following = true
 			knight.drop_lever()
 		
 		else :
 			if O1 :
 				is_following = false
+				sound_let.play()
 			
 			elif O2 && lever_present :
 				knight.go_to_lever(lever_present)
@@ -131,6 +135,16 @@ func _physics_process(delta: float) -> void:
 	if knight && is_following && !is_close :
 		knight.follow()
 		is_close = true
+
+	if is_following != null:
+		$ControlHints.connectable = is_close && !is_following
+		$ControlHints.disconnectable = is_close && is_following
+	else:
+		$ControlHints.connectable = false
+		
+
+	$ControlHints.interactable = lever_present != null
+	$ControlHints.orderable = (lever_present != null) && is_close && (is_following != null)
 
 
 func lever_reach(body: Node2D) -> void:

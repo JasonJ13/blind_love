@@ -4,6 +4,7 @@ class_name Level
 @export var grill : TileMapLayer
 var roue_grill : Array[Lever]
 @export var roues : Node2D
+@onready var grille_sound : AudioStreamPlayer2D = $GrilleStreamPlayer2D
 
 @export var spawn_point_princesse : Node2D
 @export var spawn_point_knight : Node2D
@@ -18,6 +19,7 @@ func init_roue() -> void :
 
 func remove_grill() -> void :
 	if grill :
+		grille_sound.play()
 		grill.queue_free()
 
 func is_actioned() -> void :

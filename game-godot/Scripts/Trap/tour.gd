@@ -3,6 +3,8 @@ class_name Tour extends Trap
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var lumiere: RayCast2D = $Lumière
+@export var scale_detection:int
+@onready var zone_detection: Area2D = $Zone_detection
 
 var cibles: Array[CharacterBody2D]
 var current_cible:CharacterBody2D
@@ -17,6 +19,8 @@ func _ready() -> void:
 	active=false
 	add_child(timer)
 	timer.timeout.connect(self.change_state.bind(STATE.ATTACK))
+	if scale_detection>1:
+		zone_detection.scale=zone_detection.scale*scale_detection
 
 func _process(_delta:float):
 	match current_state:
