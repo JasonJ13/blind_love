@@ -63,6 +63,12 @@ func _ready() -> void:
 	center.shape.radius = radius_center
 	set_princesse(princesse,princesse.get_radius())
 
+func play_animation(anim):
+	sprite.play(anim)
+	
+func stop_anim():
+	sprite.frame=0
+	sprite.stop()
 
 func remove_one_trap() -> void :
 	nmb_hear -= 1
