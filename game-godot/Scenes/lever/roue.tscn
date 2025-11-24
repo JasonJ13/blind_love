@@ -29,9 +29,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rnie0"]
 size = Vector2(30, 15)
 
-[node name="Roue" type="StaticBody2D" node_paths=PackedStringArray("sprite")]
+[node name="Roue" type="StaticBody2D"]
 script = ExtResource("1_vb1pb")
-sprite = NodePath("Sprite")
 metadata/_custom_type_script = "uid://biotap1x25juw"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]

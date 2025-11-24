@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=4 uid="uid://cywanc00d2eb7"]
 
-[ext_resource type="PackedScene" uid="uid://c4a2ipm8nvptc" path="res://Scenes/level/lvl_3.tscn" id="1_5pmam"]
+[ext_resource type="PackedScene" uid="uid://c4a2ipm8nvptc" path="res://Scenes/level/Lvl_3.tscn" id="1_5pmam"]
 [ext_resource type="PackedScene" uid="uid://5urt5nn1xqdy" path="res://Scenes/Trap/lame_métronome.tscn" id="2_mtfaw"]
 
 [node name="lvl3" instance=ExtResource("1_5pmam")]
