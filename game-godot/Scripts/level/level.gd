@@ -2,7 +2,7 @@ extends Node2D
 class_name Level
 
 @export var grill : TileMapLayer
-var roue_grill : Array[Lever]
+var roue_grill : Array[Actionner]
 @export var roues : Node2D
 @onready var grille_sound : AudioStreamPlayer2D = $GrilleStreamPlayer2D
 
@@ -14,7 +14,6 @@ signal level_end
 func init_roue() -> void :
 	for roue in roues.get_children() :
 		roue_grill.append(roue)
-		roue.is_actived_signal.connect(self.is_actioned)
 
 
 func remove_grill() -> void :
@@ -23,8 +22,10 @@ func remove_grill() -> void :
 		grill.queue_free()
 
 func is_actioned() -> void :
+	
 	for roue in roue_grill :
 		if !roue.is_actived() :
+			print(roue.is_actived())
 			return
 	
 	for roue in roue_grill :

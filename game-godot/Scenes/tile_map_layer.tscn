@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5it3np1n0kfk"]
+[gd_scene load_steps=5 format=3 uid="uid://c5it3np1n0kfk"]
 
 [ext_resource type="Texture2D" uid="uid://cu4q7534jg88o" path="res://Assets/tilesetv3.png" id="1_qbaa6"]
+[ext_resource type="Script" uid="uid://bkqq3uu5gfamr" path="res://Scripts/level/tile_map_layer.gd" id="2_8cujs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8cujs"]
 texture = ExtResource("1_qbaa6")
@@ -262,7 +263,9 @@ sources/0 = SubResource("TileSetAtlasSource_8cujs")
 
 [node name="TileMapLayer" type="TileMapLayer"]
 tile_set = SubResource("TileSet_tto40")
+script = ExtResource("2_8cujs")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 scale = Vector2(1, 1.0000001)
 color = Color(0, 0, 0, 1)

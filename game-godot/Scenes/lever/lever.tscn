@@ -76,4 +76,4 @@ libraries = {
 &"": SubResource("AnimationLibrary_sk8qt")
 }
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="end_active"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="end_bar"]

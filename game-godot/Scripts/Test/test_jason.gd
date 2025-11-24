@@ -13,4 +13,3 @@ func _ready() -> void:
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	await get_tree().create_timer(5).timeout
-	princesse.emit_signal("dead")

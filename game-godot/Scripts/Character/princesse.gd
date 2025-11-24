@@ -20,7 +20,7 @@ var is_close : bool = true
 
 @export var range_max_rope : int = 256 
 
-var lever_present : Lever = null
+var actionner_present : Actionner = null
 
 @export var light : bool = true
 
@@ -109,14 +109,17 @@ func _physics_process(delta: float) -> void:
 	
 	### Activate roue
 	
-	if lever_present :
-		if Input.is_action_just_pressed("ui_select") :
-			lever_present.active()
+	if actionner_present :
+		if Input.is_action_just_pressed("ui_select") && !actionner_present.is_resolve() :
+			actionner_present.active()
 			SPEED = 0
 		elif Input.is_action_just_released("ui_select") :
-			if lever_present is Lever :
-				lever_present.desactive()
+			if actionner_present is Actionner :
+				actionner_present.desactive()
 			SPEED = 200
+		elif actionner_present.is_resolve() :
+			SPEED = 200
+			actionner_present = null
 
 
 	### Mouvement Knight
@@ -134,8 +137,8 @@ func _physics_process(delta: float) -> void:
 				is_following = false
 				sound_let.play()
 			
-			elif O2 && lever_present :
-				knight.go_to_lever(lever_present)
+			elif O2 && actionner_present :
+				knight.go_to_lever(actionner_present)
 				is_following = false
 	
 	is_close = position.distance_to(knight.position) < area_pull_radius +.01
@@ -146,21 +149,21 @@ func _physics_process(delta: float) -> void:
 
 
 	$ControlHints.connected = is_close
-	$ControlHints.interactable = lever_present != null
-	$ControlHints.orderable = (lever_present != null) && is_close && (is_following != null)
+	$ControlHints.interactable = actionner_present != null
+	$ControlHints.orderable = (actionner_present != null) && is_close && (is_following != null)
 
 
 func lever_reach(body: Node2D) -> void:
-	if body is Lever :
-		lever_present = body
+	if body is Actionner && !body.is_resolve():
+		actionner_present = body
 	
 	
 		
 
 
 func lever_leave(body: Node2D) -> void:
-	if body == lever_present :
-		lever_present = null
+	if body == actionner_present :
+		actionner_present = null
 	
 
 

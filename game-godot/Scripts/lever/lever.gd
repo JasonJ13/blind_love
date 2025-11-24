@@ -1,11 +1,13 @@
-extends Lever
+extends Actionner
 
 @onready var bar : ColorRect = $bar
 @onready var progress_an : AnimationPlayer = $AnimationPlayer
 @onready var sprite : Sprite2D = $Sprite2D
 
+
 func _ready() -> void:
 	bar.hide()
+	sprite.frame = 0
 
 func begin_bar() -> void :
 	bar.show()
@@ -13,24 +15,21 @@ func begin_bar() -> void :
 	progress_an.play("progress")
 
 func stop_bar() -> void :
+	print("stop")
 	progress_an.stop()
+	sprite.frame = 0
 	bar.hide()
-	
 
-func active() -> void:
-	if !resolve :
-		begin_bar()
 
-func desactive() -> void:
-	if !resolve :
-		stop_bar()
-		sprite.frame = 0
+func activation() -> void:
+	begin_bar()
+
+func desactivation() -> void:
+	stop_bar()
 	
 
 @warning_ignore("unused_parameter")
-func end_active(animation) -> void :
-	activation()
+func end_bar(animation) -> void :
+	as_resolve()
 	sprite.frame = 2
-	resolve = true
 	bar.hide()
-	print("activate")

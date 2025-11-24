@@ -113,38 +113,40 @@ func stop() -> void:
 
 
 
-var lever : Lever
+var actionner : Actionner
 var not_reach : bool = true
 
-func go_to_lever(l : Lever) :
-	lever = l
+func go_to_lever(a : Actionner) :
+	actionner = a
 
 func drop_lever() :
-	if lever : 
-		lever.desactive()
-		lever = null
+	if actionner : 
+		if! actionner.is_resolve() :
+			actionner.desactive()
+		
+		actionner = null
 		not_reach = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 @warning_ignore("unused_parameter")
 func _process(delta: float) -> void:
 	
-	if lever && not_reach:
-		var direction = lever.position - position
+	if actionner && not_reach:
+		var direction = actionner.position - position
 		velocity = direction.normalized() * SPEED
 		
 		move_and_slide()
 		princesse.move_rope(position.distance_to(princesse.position),get_angle_to(princesse.position))
 		
-		if position.distance_to(lever.position) < 64 :
-			lever_reach(lever)
+		if position.distance_to(actionner.position) < 64 :
+			lever_reach(actionner)
 
 
 func lever_reach(body: Node2D) -> void:
 	
-	if lever && body == lever :
+	if actionner && body == actionner :
 		not_reach = false
-		lever.active()
+		actionner.active()
 	
 
 
