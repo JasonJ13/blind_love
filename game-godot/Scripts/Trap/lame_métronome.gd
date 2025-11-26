@@ -1,11 +1,18 @@
-class_name Lame extends Trap
+extends Trap
+
+@export var begin_active : bool = true
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if begin_active :
+		activate()
+	else :
+		desactivate()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func activation() :
+	pass
+
+func desactivation() :
 	pass

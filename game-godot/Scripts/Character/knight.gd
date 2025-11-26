@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Knight
 
 
 @onready var center : CollisionShape2D = $center
@@ -157,22 +157,20 @@ signal dead
 
 func die() -> void :
 	dead.emit()
-	print("knight dead")
 
 
 func trap_leave(body: Node2D) -> void:
 	if body is Trap :
-		body.activation.disconnect(die)
+		body.activation_signal.disconnect(die)
 
 
 func hitbox_enter(body: Node2D) -> void:
 	if body is Trap :
-		print("enter")
-		body.activation.connect(die)
+		body.activation_signal.connect(die)
 		if body.is_actived() :
 			die()
 
 
 func hitbox_exit(body: Node2D) -> void:
 	if body is Trap :
-		body.activation.disconnect(die)
+		body.activation_signal.disconnect(die)

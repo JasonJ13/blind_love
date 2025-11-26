@@ -1,14 +1,25 @@
 class_name Pics extends Trap
 
 
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-
+@onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var sound : AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 func _ready() -> void:
-	active=false
+	desactivate()
+
+
+func activation():
+	sprite.play("picsOn")
+	sound.play()
+
+func desactivation():
 	sprite.play("picsOff")
 
-func _on_zone_detection_body_entered(_body: Node2D) -> void:
-	sprite.play("picsOn")
-	$AudioStreamPlayer2D.play()
-	activate()
+func step_on(body : CharacterBody2D) :
+	
+	if body is Princess || body is Knight :
+		activate()
+
+func step_off(body : CharacterBody2D) :
+	if body is Princess || body is Knight :
+		desactivate()

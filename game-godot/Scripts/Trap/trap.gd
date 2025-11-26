@@ -1,23 +1,21 @@
-class_name Trap extends StaticBody2D
+@abstract class_name Trap 
+extends StaticBody2D
 
-signal activation
-signal desactivation
+signal activation_signal
+signal desactivation_signal
 
-var active:bool 
+var active : bool 
 
 func is_actived() -> bool :
 	return active
 
-func desactivate() -> void :
-	if is_actived() :
-		desactivation.emit()
-	
-	active = false
-	
-
 func activate():
-	if !is_actived() :
-		activation.emit()
-		print("pic up")
-	
-	active=true
+	activation_signal.emit()
+	active = true
+
+func desactivate() -> void :
+	desactivation_signal.emit()
+	active = false
+
+@abstract func activation()
+@abstract func desactivation()

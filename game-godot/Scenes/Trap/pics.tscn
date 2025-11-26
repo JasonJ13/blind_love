@@ -61,4 +61,5 @@ shape = SubResource("RectangleShape2D_12dir")
 shape = SubResource("RectangleShape2D_ynrgr")
 debug_color = Color(0.78927106, 0.2682656, 0.19306618, 0.41960785)
 
-[connection signal="body_entered" from="Zone_detection" to="." method="_on_zone_detection_body_entered"]
+[connection signal="body_entered" from="Zone_detection" to="." method="step_on"]
+[connection signal="body_exited" from="Zone_detection" to="." method="step_off"]
