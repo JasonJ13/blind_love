@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var princess : CharacterBody2D = $Princesse
-@onready var knight : CharacterBody2D = $Knight
+@onready var princess : Princess = $Princesse
+@onready var knight : Knight = $Knight
 @onready var death : CanvasLayer = $death
 
 @export var nmb_level : int = 1
@@ -35,11 +35,13 @@ func new_level() -> void :
 	add_child(current_level)
 	
 	current_level.spawn(princess, knight)
+	princess.spawn()
 
 func reload_level() -> void :
 	current_level.queue_free()
 	current_level = levels[current_nmb_level].instantiate()
 	current_level.level_end.connect(finished_level)
+	princess.spawn()
 	
 	current_level.spawn(princess, knight)
 	princess.input_disabled=false
@@ -61,6 +63,9 @@ func finished_level(body : Node2D) ->void :
 		current_nmb_level += 1
 		if current_nmb_level == nmb_level :
 			win.emit()
+		
+		else :
+			new_level()
 
 
 func back_to_menu() -> void:

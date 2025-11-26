@@ -1,6 +1,8 @@
 extends TileMapLayer
 
+@export var light : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$CanvasModulate.show()
+	if !light :
+		$CanvasModulate.show()
