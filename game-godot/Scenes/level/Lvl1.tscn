@@ -41,6 +41,7 @@ stream = ExtResource("4_wu1ab")
 [node name="Roue" type="Node2D" parent="."]
 
 [node name="Roue1" parent="Roue" node_paths=PackedStringArray("wires") instance=ExtResource("4_74igr")]
+z_index = 1
 position = Vector2(948, 216)
 scale = Vector2(0.75, 0.75)
 wires = [NodePath("ColorRect"), NodePath("ColorRect2")]
@@ -69,6 +70,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Roue2" parent="Roue" node_paths=PackedStringArray("wires") instance=ExtResource("4_74igr")]
+z_index = 4
 position = Vector2(736, 284)
 scale = Vector2(0.75, 0.75)
 wires = [NodePath("ColorRect"), NodePath("ColorRect2")]
@@ -113,6 +115,7 @@ position = Vector2(846, 48.5)
 shape = SubResource("RectangleShape2D_vvfi5")
 
 [node name="Lever" parent="." instance=ExtResource("6_kaa8h")]
+z_index = 1
 position = Vector2(357, 192)
 
 [node name="Trap" type="Node2D" parent="."]

@@ -51,6 +51,7 @@ func reload_level() -> void :
 
 func dead() :
 	death.activate()
+	current_level.spawn(princess,knight)
 
 signal win
 

@@ -9,6 +9,12 @@ var roue_grill : Array[Actionner]
 @export var spawn_point_princesse : Node2D
 @export var spawn_point_knight : Node2D
 
+func get_spawn_point_pr() -> Vector2 :
+	return spawn_point_princesse.position
+
+func get_spawn_point_kn() -> Vector2 :
+	return spawn_point_knight.position
+
 signal level_end
 
 func init_roue() -> void :

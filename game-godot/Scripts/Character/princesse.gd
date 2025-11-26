@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+class_name Princess
 
 @export var SPEED = 300.0
 
@@ -28,6 +28,7 @@ var input_disabled=false
 
 
 func _ready() -> void :
+	move_rope(position.distance_to(knight.position),knight.position.angle_to_point(position))
 	if light :
 		$PointLight2D.show()
 
@@ -85,11 +86,11 @@ func _physics_process(delta: float) -> void:
 			move_rope(distance_kn, angle_kn)
 			
 			if position.y > knight.position.y :
-				z_index = 1
-				knight.z_index = 0
+				z_index = 3
+				knight.z_index = 2
 			else :
-				z_index = 0
-				knight.z_index = 1
+				z_index = 2
+				knight.z_index = 3
 			
 			if abs(velocity.x) > abs(velocity.y) :
 				if velocity.x > 0 :
@@ -107,7 +108,7 @@ func _physics_process(delta: float) -> void:
 				old_direction = new_direction
 	
 	
-	### Activate roue
+	### Activate actionner
 	
 	if actionner_present :
 		if Input.is_action_just_pressed("ui_select") && !actionner_present.is_resolve() :
@@ -156,9 +157,6 @@ func _physics_process(delta: float) -> void:
 func lever_reach(body: Node2D) -> void:
 	if body is Actionner && !body.is_resolve():
 		actionner_present = body
-	
-	
-		
 
 
 func lever_leave(body: Node2D) -> void:
@@ -191,16 +189,15 @@ signal dead
 func die() -> void :
 	dead.emit()
 	$Camera2D.process_mode = Node.PROCESS_MODE_DISABLED
-	print("princess dead")
 
 
 func hitbox_enter(body: Node2D) -> void:
 	if body is Trap :
-		body.activation.connect(die)
+		body.activation_signal.connect(die)
 		if body.is_actived() :
 			die()
 
 
 func hitbox_exit(body: Node2D) -> void:
 	if body is Trap :
-		body.activation.disconnect(die)
+		body.activation_signal.disconnect(die)
