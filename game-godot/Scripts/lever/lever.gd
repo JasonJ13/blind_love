@@ -5,7 +5,7 @@ extends Actionner
 @onready var sprite : Sprite2D = $Sprite2D
 
 
-func _ready() -> void:
+func ready() -> void:
 	bar.hide()
 	sprite.frame = 0
 

@@ -83,26 +83,14 @@ func add_one_trap() -> void :
 
 
 func hear_something(body: Node2D) -> void:
-	
-	
 	if (body is Trap) :
-		
-		if (body.is_actived()) :
-			add_one_trap()
-		
-		body.desactivation.connect(self.remove_one_trap)
-		body.activation.connect(self.add_one_trap)
+		add_one_trap()
 
 
 func Deaf_bruh(body: Node2D) -> void:
-	
 	if (body is Trap) :
-		
-		if body.is_actived() :
-			remove_one_trap()
+		remove_one_trap()
 			
-		body.desactivation.disconnect(self.remove_one_trap)
-		body.activation.disconnect(self.add_one_trap)
 
 
 func stop() -> void:
@@ -119,7 +107,8 @@ var not_reach : bool = true
 func go_to_lever(a : Actionner) :
 	actionner = a
 
-func drop_lever() :
+@warning_ignore("unused_parameter")
+func drop_lever(body: Node2D) :
 	if actionner : 
 		if! actionner.is_resolve() :
 			actionner.desactive()
@@ -158,10 +147,6 @@ signal dead
 func die() -> void :
 	dead.emit()
 
-
-func trap_leave(body: Node2D) -> void:
-	if body is Trap :
-		body.activation_signal.disconnect(die)
 
 
 func hitbox_enter(body: Node2D) -> void:

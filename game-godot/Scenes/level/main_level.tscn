@@ -7,8 +7,10 @@
 
 [node name="Main_level" type="Node2D"]
 script = ExtResource("1_yutd6")
+nmb_level = 2
 
 [node name="Knight" parent="." node_paths=PackedStringArray("princesse") instance=ExtResource("1_1ny42")]
+z_index = 2
 scale = Vector2(0.25, 0.25)
 princesse = NodePath("../Princesse")
 

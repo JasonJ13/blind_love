@@ -31,7 +31,6 @@ func is_actioned() -> void :
 	
 	for roue in roue_grill :
 		if !roue.is_actived() :
-			print(roue.is_actived())
 			return
 	
 	for roue in roue_grill :

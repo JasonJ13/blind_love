@@ -9,12 +9,14 @@ var resolve : bool = false		# All the actionner of the same group is actived, wi
 
 @abstract func activation()
 @abstract func desactivation()
+@abstract func ready()
 
 @export var wires : Array[ColorRect]	#Visual indication to the door
 
 func _ready() -> void:
 	for wire in wires :
-		wire.color = Color(0.3,0.3,0.3)	#Les actionneurs commances éteints, on désactive tout les fils
+		wire.color = Color(0.3,0.3,0.3)	#Les actionneurs commances éteints, on désactive tout les 
+	ready()
 
 func is_actived() -> bool :
 	return actived > 0

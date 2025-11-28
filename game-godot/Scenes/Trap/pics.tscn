@@ -33,10 +33,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_12dir"]
-size = Vector2(32, 32)
+size = Vector2(22, 24)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ynrgr"]
-size = Vector2(28, 28)
+[sub_resource type="CircleShape2D" id="CircleShape2D_mulcf"]
+radius = 15.132746
 
 [node name="Pics" type="StaticBody2D"]
 collision_layer = 2
@@ -58,7 +58,7 @@ shape = SubResource("RectangleShape2D_12dir")
 [node name="Zone_detection" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zone_detection"]
-shape = SubResource("RectangleShape2D_ynrgr")
+shape = SubResource("CircleShape2D_mulcf")
 debug_color = Color(0.78927106, 0.2682656, 0.19306618, 0.41960785)
 
 [connection signal="body_entered" from="Zone_detection" to="." method="step_on"]

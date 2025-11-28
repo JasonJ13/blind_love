@@ -32,6 +32,10 @@ func _ready() -> void :
 	if light :
 		$PointLight2D.show()
 
+func spawn() -> void :
+	move_rope(position.distance_to(knight.position),knight.position.angle_to_point(position))
+	is_following = true
+
 func set_knight(kn : CharacterBody2D) :
 	knight = kn
 
@@ -83,6 +87,9 @@ func _physics_process(delta: float) -> void:
 			sprite.stop()
 		
 		else :
+			if !sprite.is_playing() :
+				sprite.play()
+			
 			move_rope(distance_kn, angle_kn)
 			
 			if position.y > knight.position.y :
