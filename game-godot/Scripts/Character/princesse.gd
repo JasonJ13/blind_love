@@ -87,6 +87,9 @@ func _physics_process(delta: float) -> void:
 			sprite.stop()
 		
 		else :
+			if !sprite.is_playing() :
+				sprite.play()
+			
 			move_rope(distance_kn, angle_kn)
 			
 			if position.y > knight.position.y :

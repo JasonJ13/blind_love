@@ -263,7 +263,6 @@ libraries = {
 speed_scale = 4.0
 
 [node name="Grab" type="Area2D" parent="."]
-collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grab"]
 shape = SubResource("CircleShape2D_mmvx3")

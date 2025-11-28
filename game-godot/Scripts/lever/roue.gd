@@ -3,6 +3,10 @@ extends Actionner
 @onready var sprite : AnimatedSprite2D = $Sprite
 @onready var sound : AudioStreamPlayer2D = $AudioStreamPlayer2D
 
+
+func ready() -> void :
+	sprite.frame = 0
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func activation() -> void:
 	sprite.play()

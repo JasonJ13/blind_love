@@ -6,7 +6,7 @@ extends Node2D
 
 @export var nmb_level : int = 1
 var levels : Array[Resource]
-var current_nmb_level : int = 0
+var current_nmb_level : int = 1
 var current_level : Level = null
 
 signal go_menu

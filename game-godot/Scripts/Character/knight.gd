@@ -107,7 +107,8 @@ var not_reach : bool = true
 func go_to_lever(a : Actionner) :
 	actionner = a
 
-func drop_lever() :
+@warning_ignore("unused_parameter")
+func drop_lever(body: Node2D) :
 	if actionner : 
 		if! actionner.is_resolve() :
 			actionner.desactive()

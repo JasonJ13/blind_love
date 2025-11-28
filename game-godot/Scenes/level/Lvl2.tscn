@@ -33,26 +33,14 @@ position = Vector2(-367, 691)
 [node name="Pics3" parent="Traps/Pics" instance=ExtResource("2_8enbx")]
 position = Vector2(-335, 690)
 
-[node name="Pics4" parent="Traps/Pics" instance=ExtResource("2_8enbx")]
-position = Vector2(-273, 720)
-
 [node name="Pics5" parent="Traps/Pics" instance=ExtResource("2_8enbx")]
 position = Vector2(-164, 723)
-
-[node name="Pics6" parent="Traps/Pics" instance=ExtResource("2_8enbx")]
-position = Vector2(-130, 723)
 
 [node name="Pics7" parent="Traps/Pics" instance=ExtResource("2_8enbx")]
 position = Vector2(-93, 754)
 
-[node name="Pics8" parent="Traps/Pics" instance=ExtResource("2_8enbx")]
-position = Vector2(-69, 687)
-
 [node name="Pics9" parent="Traps/Pics" instance=ExtResource("2_8enbx")]
-position = Vector2(-33, 688)
-
-[node name="Pics10" parent="Traps/Pics" instance=ExtResource("2_8enbx")]
-position = Vector2(2, 749)
+position = Vector2(19, 689)
 
 [node name="Pics11" parent="Traps/Pics" instance=ExtResource("2_8enbx")]
 position = Vector2(49, 720)
@@ -154,8 +142,9 @@ position = Vector2(977, 329)
 [node name="Lever1" parent="Actionners" instance=ExtResource("7_qsl34")]
 position = Vector2(982, -158)
 
-[node name="Lever2" parent="Actionners" instance=ExtResource("7_qsl34")]
+[node name="Lever2" parent="Actionners" node_paths=PackedStringArray("wires") instance=ExtResource("7_qsl34")]
 position = Vector2(722, 117)
+wires = [NodePath("Wire1"), NodePath("Wire2"), NodePath("Wire3"), NodePath("Wire4"), NodePath("Wire5"), NodePath("Wire6"), NodePath("Wire7")]
 
 [node name="Wire1" type="ColorRect" parent="Actionners/Lever2"]
 offset_left = -10.0
