@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cy8bq3a5ieexo"]
+[gd_scene load_steps=11 format=3 uid="uid://cy8bq3a5ieexo"]
 
 [ext_resource type="Script" uid="uid://duac1x4n0u33r" path="res://Scripts/Test/test_jason.gd" id="1_e47bv"]
 [ext_resource type="PackedScene" uid="uid://ctvwc8ks84tv3" path="res://Scenes/Character/Princesse.tscn" id="2_rnu5p"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bdq6q2syb1bh1" path="res://Scenes/lever/roue.tscn" id="8_iy1t8"]
 [ext_resource type="PackedScene" uid="uid://d2xf08crbamjt" path="res://Scenes/lever/lever.tscn" id="8_wki4i"]
 [ext_resource type="PackedScene" uid="uid://5urt5nn1xqdy" path="res://Scenes/Trap/lame_métronome.tscn" id="9_iy1t8"]
+[ext_resource type="PackedScene" uid="uid://cubwx1ohu5orf" path="res://Scenes/Trap/Tour.tscn" id="10_pu423"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_e47bv")
@@ -42,6 +43,9 @@ position = Vector2(-161, 27)
 
 [node name="Lame" parent="." instance=ExtResource("9_iy1t8")]
 position = Vector2(-223, -58)
+
+[node name="Tour" parent="." instance=ExtResource("10_pu423")]
+position = Vector2(168, -226)
 
 [connection signal="dead" from="Princesse" to="CanvasLayer2" method="activate"]
 [connection signal="dead" from="Knight" to="CanvasLayer2" method="activate"]
