@@ -28,7 +28,6 @@ var input_disabled=false
 
 
 func _ready() -> void :
-	move_rope(position.distance_to(knight.position),knight.position.angle_to_point(position))
 	if light :
 		$PointLight2D.show()
 
@@ -138,7 +137,7 @@ func _physics_process(delta: float) -> void:
 		if !is_following :
 			sound_hold.play()
 			is_following = true
-			knight.drop_lever()
+			knight.drop_lever(actionner_present)
 		
 		else :
 			if O1 :

@@ -44,6 +44,7 @@ func desactive() -> void :
 
 func as_resolve() -> void :
 	resolve = true
+	actived = 1
 	for wire in wires :
 		wire.color = Color(0.302, 0.835, 0.302, 1.0)				# Activation des fils
 
