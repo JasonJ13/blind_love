@@ -1,20 +1,19 @@
-[gd_scene load_steps=9 format=4 uid="uid://j1dr4dqi7qii"]
+[gd_scene load_steps=8 format=4 uid="uid://j1dr4dqi7qii"]
 
 [ext_resource type="PackedScene" uid="uid://c5it3np1n0kfk" path="res://Scenes/tile_map_layer.tscn" id="1_1betb"]
-[ext_resource type="Script" uid="uid://bm7dps267umgr" path="res://Scripts/level/lvl_1.gd" id="1_74igr"]
+[ext_resource type="Script" uid="uid://d0nmjx75p4rir" path="res://Scripts/Levels/level.gd" id="1_kaa8h"]
 [ext_resource type="PackedScene" uid="uid://bl6vp6hrj0vri" path="res://Scenes/Trap/pics.tscn" id="2_benow"]
 [ext_resource type="PackedScene" uid="uid://bdq6q2syb1bh1" path="res://Scenes/lever/roue.tscn" id="4_74igr"]
 [ext_resource type="AudioStream" uid="uid://blco878ae88g2" path="res://Assets/sons/SteelFalling.wav" id="4_wu1ab"]
 [ext_resource type="PackedScene" uid="uid://d2xf08crbamjt" path="res://Scenes/lever/lever.tscn" id="6_kaa8h"]
-[ext_resource type="AudioStream" uid="uid://bhgwr7a18eq0n" path="res://Assets/blindHeartLooping.wav" id="7_3rs2y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvfi5"]
 size = Vector2(110, 37)
 
-[node name="Lvl1" type="Node2D" node_paths=PackedStringArray("grill", "roues", "spawn_point_princesse", "spawn_point_knight")]
-script = ExtResource("1_74igr")
+[node name="Lvl1" type="Node2D" node_paths=PackedStringArray("grill", "actionners", "spawn_point_princesse", "spawn_point_knight")]
+script = ExtResource("1_kaa8h")
 grill = NodePath("grill")
-roues = NodePath("Roue")
+actionners = NodePath("Roue")
 spawn_point_princesse = NodePath("princess_spawn")
 spawn_point_knight = NodePath("knight_spawn")
 metadata/_custom_type_script = "uid://d0nmjx75p4rir"
@@ -33,10 +32,6 @@ offset_top = 362.0
 offset_right = 318.0
 offset_bottom = 479.0
 color = Color(0.6133905, 0.6133902, 0.61339027, 1)
-
-[node name="GrilleStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(848, 123)
-stream = ExtResource("4_wu1ab")
 
 [node name="Roue" type="Node2D" parent="."]
 
@@ -98,10 +93,6 @@ offset_bottom = 16.000015
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_3rs2y")
-volume_db = 3.215
-
 [node name="princess_spawn" type="Node2D" parent="."]
 position = Vector2(407, 444)
 
@@ -123,6 +114,10 @@ position = Vector2(357, 192)
 [node name="Pics" parent="Trap" instance=ExtResource("2_benow")]
 position = Vector2(601, 273)
 
-[connection signal="is_actived_signal" from="Roue/Roue1" to="." method="is_actioned"]
-[connection signal="is_actived_signal" from="Roue/Roue2" to="." method="is_actioned"]
+[node name="GrilleStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(848, 123)
+stream = ExtResource("4_wu1ab")
+
+[connection signal="is_actived_signal" from="Roue/Roue1" to="." method="is_actioned_roue"]
+[connection signal="is_actived_signal" from="Roue/Roue2" to="." method="is_actioned_roue"]
 [connection signal="body_entered" from="Area2D" to="." method="level_finished"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://5urt5nn1xqdy"]
 
-[ext_resource type="Script" uid="uid://bxt7r3si0iwbg" path="res://Scripts/Trap/lame_métronome.gd" id="1_glpoj"]
+[ext_resource type="Script" uid="uid://bxt7r3si0iwbg" path="res://Scripts/Traps/lame_métronome.gd" id="1_glpoj"]
 [ext_resource type="Texture2D" uid="uid://colrxc5mie6ia" path="res://Assets/lameCorps.png" id="2_glpoj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_glpoj"]

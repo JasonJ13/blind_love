@@ -1,4 +1,5 @@
 extends Actionner
+class_name Roue
 
 @onready var sprite : AnimatedSprite2D = $Sprite
 @onready var sound : AudioStreamPlayer2D = $AudioStreamPlayer2D

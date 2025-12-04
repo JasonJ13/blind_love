@@ -1,7 +1,7 @@
 [gd_scene load_steps=22 format=3 uid="uid://cubwx1ohu5orf"]
 
 [ext_resource type="Texture2D" uid="uid://bfgkperm3wwr1" path="res://Assets/Tour+oeil/TourBack.png" id="1_2445m"]
-[ext_resource type="Script" uid="uid://much4b7hvq1q" path="res://Scripts/Trap/tour.gd" id="1_dd7vw"]
+[ext_resource type="Script" uid="uid://much4b7hvq1q" path="res://Scripts/Traps/tour.gd" id="1_dd7vw"]
 [ext_resource type="Texture2D" uid="uid://bfd1xc46ai83o" path="res://Assets/Tour+oeil/TourOeilFront.png" id="2_dd7vw"]
 [ext_resource type="Script" uid="uid://c1k80y8rumfk3" path="res://Scripts/lumière.gd" id="2_esq5d"]
 [ext_resource type="Texture2D" uid="uid://tppwc3xo0uv1" path="res://Assets/Tour+oeil/TourOeilL45.png" id="3_esq5d"]

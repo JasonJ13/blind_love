@@ -6,7 +6,7 @@ extends Node2D
 
 @export var nmb_level : int = 1
 var levels : Array[Resource]
-var current_nmb_level : int = 1
+var current_nmb_level : int = 0
 var current_level : Level = null
 
 signal go_menu
@@ -17,6 +17,7 @@ func _ready() -> void:
 		levels.append(load("res://Scenes/level/Lvl"+str(n+1)+".tscn"))
 	
 	new_level()
+	$AudioStreamPlayer.play()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,7 +33,7 @@ func new_level() -> void :
 	current_level = levels[current_nmb_level].instantiate()
 	current_level.level_end.connect(finished_level)
 	
-	add_child(current_level)
+	call_deferred("add_child", current_level)
 	
 	current_level.spawn(princess, knight)
 	princess.spawn()
@@ -49,6 +50,7 @@ func reload_level() -> void :
 	death.audio_stream_player.stop()
 	
 	add_child(current_level)
+	$AudioStreamPlayer.play()
 	
 
 func dead() :

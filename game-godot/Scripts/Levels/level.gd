@@ -2,8 +2,8 @@ extends Node2D
 class_name Level
 
 @export var grill : TileMapLayer
-var roue_grill : Array[Actionner]
-@export var roues : Node2D
+var actionners_grill : Array[Actionner]
+@export var actionners : Node2D
 @onready var grille_sound : AudioStreamPlayer2D = $GrilleStreamPlayer2D
 
 @export var spawn_point_princesse : Node2D
@@ -17,9 +17,12 @@ func get_spawn_point_kn() -> Vector2 :
 
 signal level_end
 
-func init_roue() -> void :
-	for roue in roues.get_children() :
-		roue_grill.append(roue)
+func _ready() -> void:
+	init_actionner()
+
+func init_actionner() -> void :
+	for actionner in actionners.get_children() :
+		actionners_grill.append(actionner)
 
 
 func remove_grill() -> void :
@@ -27,14 +30,26 @@ func remove_grill() -> void :
 		grille_sound.play()
 		grill.queue_free()
 
-func is_actioned() -> void :
-	
-	for roue in roue_grill :
-		if !roue.is_actived() :
+
+func is_actioned_roue() -> void :
+	for actionner in actionners_grill :
+		if actionner is Roue && !actionner.is_actived() :
 			return
 	
-	for roue in roue_grill :
-		roue.all_active()
+	for actionner in actionners_grill :
+		if actionner is Roue :
+			actionner.all_active()
+	is_actioned()
+
+func is_actioned() -> void :
+	
+	for actionner in actionners_grill :
+
+		if !actionner.is_actived() :
+			return
+	
+	for actionner in actionners_grill :
+		actionner.as_resolve()
 	remove_grill()
 
 func spawn(princess : CharacterBody2D, knight : CharacterBody2D) -> void:

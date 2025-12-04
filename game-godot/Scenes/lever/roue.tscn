@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bdq6q2syb1bh1"]
 
-[ext_resource type="Script" uid="uid://b2m6080g0tk7a" path="res://Scripts/lever/roue.gd" id="1_vb1pb"]
+[ext_resource type="Script" uid="uid://b2m6080g0tk7a" path="res://Scripts/Actionners/roue.gd" id="1_vb1pb"]
 [ext_resource type="Texture2D" uid="uid://doxp6gne6chxd" path="res://Assets/wheel.png" id="1_widt7"]
 [ext_resource type="AudioStream" uid="uid://ca2ua7gviirac" path="res://Assets/sons/WheelTurn.wav" id="3_fp3rb"]
 
@@ -31,7 +31,7 @@ size = Vector2(30, 15)
 
 [node name="Roue" type="StaticBody2D"]
 script = ExtResource("1_vb1pb")
-metadata/_custom_type_script = "uid://biotap1x25juw"
+metadata/_custom_type_script = "uid://b2m6080g0tk7a"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, 0)
